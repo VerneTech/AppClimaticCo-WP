@@ -1,0 +1,230 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+select.tooltip_select{	
+    margin-bottom: 30px;
+}
+.nav-tab-wrapper .nav-tab {
+    font-weight: 700;
+}
+.optionsitems {
+    position: relative;
+}
+.nav-tab-wrapper a.nav-tab.nav-tab-active {
+    background: #ffffff;
+    color: #272727;
+}
+tr {
+    position: relative;
+}
+
+.group-configuration {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message-selection {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 38px;
+    background-color: #ccc; 
+    max-width: 100%;
+    margin-right: 15px;
+}
+
+.tooltip_wrap {
+    /*
+    position: absolute;
+    right: 8px;
+    top: -10px;
+    */
+}
+
+.tooltip_wrap.help-link{
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.wrap {
+    background: #fff;
+    padding: 20px;
+}
+
+span.tooltip.tooltip-simple{
+    background: #6c9bf3;
+    color: #fff;
+}
+
+div.tab_title, span.button_text {
+    cursor: pointer;
+}
+span.button_text {
+    color: #6c9bf3;
+    display: inline-block;
+}
+span.button_text_q {
+    background: #ffffff;
+    color: #6c9bf3;
+    margin-left: 3px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 19px;
+}
+a.nav-tab.nav-tab-active {
+    background: #518cbd;
+    color: #fff;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  height: auto;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  line-height: 16px;
+  font-size: 16px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.tooltip-left {
+    top: 122%;
+    right: 0;
+}
+.tooltip-left::after {
+    content: "";
+    position: absolute;
+    top: 0%;
+    right: 2%;
+    margin-top: -10px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent   #555 transparent;
+}
+
+.alertbox {
+  padding: 20px 0;
+  background-color: #eee;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+}
+
+.alertbox.success {background-color: #04AA6D;}
+.alertbox.info {background-color: #2196F3;}
+.alertbox.warning {background-color: #ff9800;}
+
+.closebtn {
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+.alertbox * {
+    display: inline-block;
+    vertical-align: middle;
+}
+.alertbox img {
+    width: 30px;
+}
+.form-table td select {
+    background-color: #efefef !important;
+    border-color: #efefef;
+    color: #747678;
+    font-weight: 500;
+}
+.form-table td {
+	padding-bottom: 0;
+    height: auto;
+}
+
+.form-table tbody tr:last-child{
+    /*
+    display: flex;
+    align-items: center;
+    */
+}
+
+.tab_title {
+    margin-top: 20px;
+}
+.tab_title_content {
+    max-height: 0;
+    transition: all 0.35s;
+    padding-top: 15px;
+    overflow: hidden;
+}
+.tab_title_content.openoption {
+    max-height: 374px;
+    transition: all 1s;
+}
+.tab_title_content select {
+    margin-bottom: 15px;
+}
+a.nav-tab:first-child {
+    margin-left: 0px;
+}
+span.button_text a {
+    text-decoration: none;
+	color: #ffffff;
+}
+span.button_text {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 14px;
+    background-color: #6c9bf3;
+    color: #ffffff;
+    padding: 10px 25px;
+    border-radius: 10px
+}
+.form-table .tooltip_wrap {
+    /*
+    top: -35px;
+    */
+}
+span.button_text:hover {
+    background-color: #ebebeb;
+}
+span.button_text:hover a {
+    color: #6c9bf3;
+}
+span.button_text:hover span.button_text_q {
+    color: #ffffff;
+    background-color: #6c9bf3;
+}
+.under_h1 {
+    margin-bottom: 10px;
+}
+
+p.submit input#submit{
+    color: #ffffff;
+    background-color: #6c9bf3;
+    border: none;
+}
