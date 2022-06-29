@@ -17,6 +17,9 @@ La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus env
 
 == Changelog ==
 
+= 0.0.4 =
+* Se ha añadido el nuevo sello que es legible en tamaños pequeños 
+
 = 0.0.3 =
 * Se ha actualizado la lista de detalles del plugin 
 
