@@ -4,7 +4,7 @@ Donate link: https://example.com/
 Tags: tag1, tag2
 Requires at least: 4.7
 Tested up to: 6.0
-Stable tag: 0.0.2
+Stable tag: 0.0.3
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -15,17 +15,10 @@ La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus env
 
 La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
 
-== Frequently Asked Questions ==
-
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
-
 == Changelog ==
+
+= 0.0.3 =
+* Se ha actualizado la lista de detalles del plugin 
 
 = 0.0.2 =
 * Segunda versión para testing 
