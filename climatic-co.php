@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              https://www.climaticco.com/
- * @since             0.0.4
+ * @since             0.0.5
  * @package           climatic_co_Plugin
  *
  * @wordpress-plugin
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           0.0.4
+ * Version:           0.0.5
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
@@ -505,12 +505,13 @@ function wp_kama_woocommerce_review_order_after_submit1(){
 	}
 	//if(!isset($options['synchronization_off'])){
 		//if($options['synchronization_off'] != 1){
+		$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
 		if (isset($options['black_background'])) {
 			# code...
 			echo '<div style="clear:both;"></div>
 			<div id="crossitem_added" class="stumpwrap '.$stump_position.'">
 				<div class="tooltip">
-					<img src="/wp-content/plugins/climatic-co/public/img/climaticco-stamp-dark.png"> 
+					<img src="/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-stamp-dark.png"> 
 					<!--<span id="crossitem">&times;</span>-->
 				</div>
 			</div> <div style="clear:both;"></div>';
@@ -518,7 +519,7 @@ function wp_kama_woocommerce_review_order_after_submit1(){
 			echo '<div style="clear:both;"></div>
 			<div id="crossitem_added" class="stumpwrap '.$stump_position.'">
 				<div class="tooltip">
-					<img src="/wp-content/plugins/climatic-co/public/img/climaticco-stamp.png"> 
+					<img src="/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-stamp.png"> 
 					<!--<span id="crossitem">&times;</span>-->
 				</div>
 			</div> <div style="clear:both;"></div>';
@@ -554,11 +555,12 @@ function custom_action_after_single_product_title() {
 			}else{
 				$options['prod_fontsize'] = '1';
 			}
+			$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
 			$background_color = $options['product_color'];
-			$black_background = '/wp-content/plugins/climatic-co/public/img/climaticco-light.png';
+			$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-light.png';
 			if(isset($options['black_background'])){
 				if($options['black_background'] == 1){
-					$black_background = '/wp-content/plugins/climatic-co/public/img/climaticco-dark.png';	
+					$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-dark.png';	
 					//$background_color = '#555';
 				}
 			}
@@ -616,11 +618,12 @@ function woocommerce_output_all_notices1() {
 			}else{
 				$options['cart_fontsize'] = '1';
 			}
-			$background_color = $options['cart_color'];
-			$black_background = '/wp-content/plugins/climatic-co/public/img/climaticco-light.png';
+			$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
+			$background_color = $options['product_color'];
+			$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-light.png';
 			if(isset($options['black_background'])){
 				if($options['black_background'] == 1){
-					$black_background = '/wp-content/plugins/climatic-co/public/img/climaticco-dark.png';	
+					$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-dark.png';	
 					//$background_color = '#555';
 				}
 			}
@@ -674,11 +677,12 @@ function woocommerce_before_checkout_form_before() {
 			}else{
 				$options['checkout_fontsize'] = '1';
 			}
-			$background_color = $options['checkout_color'];
-			$black_background = '/wp-content/plugins/climatic-co/public/img/climaticco-light.png';
+			$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
+			$background_color = $options['product_color'];
+			$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-light.png';
 			if(isset($options['black_background'])){
 				if($options['black_background'] == 1){
-					$black_background = '/wp-content/plugins/climatic-co/public/img/climaticco-dark.png';	
+					$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-dark.png';	
 					//$background_color = '#555';
 				}
 			}
@@ -727,11 +731,12 @@ function woo_change_order_received_text( $str, $order ) {
 				$options['thankyou_fontsize'] = '1';
 			}
 			*/
-			$background_color = $options['thankyou_color'];
-			$black_background = '/wp-content/plugins/climatic-co/public/img/climaticco-light.png';
+			$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
+			$background_color = $options['product_color'];
+			$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-light.png';
 			if(isset($options['black_background'])){
 				if($options['black_background'] == 1){
-					$black_background = '/wp-content/plugins/climatic-co/public/img/climaticco-dark.png';	
+					$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-dark.png';	
 					//$background_color = '#555';
 				}
 			}
