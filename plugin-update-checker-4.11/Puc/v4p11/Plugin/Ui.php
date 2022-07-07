@@ -21,7 +21,7 @@ if ( !class_exists('Puc_v4p11_Plugin_Ui', false) ):
 			if ( $this->updateChecker->userCanInstallUpdates() ) {
 				$this->handleManualCheck();
 
-				//add_filter('plugin_row_meta', array($this, 'addViewDetailsLink'), 10, 3);
+				add_filter('plugin_row_meta', array($this, 'addViewDetailsLink'), 10, 3);
 				add_filter('plugin_row_meta', array($this, 'addCheckForUpdatesLink'), 10, 2);
 				add_action('all_admin_notices', array($this, 'displayManualCheckResult'));
 			}
