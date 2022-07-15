@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              https://www.climaticco.com/
- * @since             0.0.7
+ * @since             1.0.0
  * @package           climatic_co_Plugin
  *
  * @wordpress-plugin
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           0.0.7
+ * Version:           1.0.0
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
@@ -755,7 +755,7 @@ function woo_change_order_received_text( $str, $order ) {
 			}
 			
 			
-			$allmsg = '<span class="tooltip"><img src="'.$black_background.'"></span> <span class="message-content">'.$msg.'</span>';
+			$allmsg = '<span class="tooltip"><img src="'.$black_background.'"></span> <span class="message-content" style="margin-top: 2px;">'.$msg.' <a href="'.$link.'" target="_blank" style="display: inline-flex;align-items: flex-start;padding: 0; margin-top: -4;">Más información</a></span>';
 			/*
 			if($options['thankyou_alignment'] == 'right'){				
 				$allmsg = $msg.'<span class="tooltip"><img src="'.$black_background.'"></span> ';
@@ -763,8 +763,8 @@ function woo_change_order_received_text( $str, $order ) {
 			*/
 			
 			$new_str = '<div class="alertbox alertbox-'.$options['thankyou_alignment'].'" style="background-color:'.$background_color.';text-align: '.$options['thankyou_alignment'].';font-size:'.$options['thankyou_fontsize'].'em;">
-			'.$allmsg.'<a href="'.$link.'" target="_blank" style="margin: 5px;">Más información</a>
-				<span class="closebtn tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i> <span style="background-color:'.$background_color.';" class="tooltiptext tooltip-left">'.$tooltip.'</span></span> 
+			'.$allmsg.'
+				<span class="closebtn tooltip" style="margin-top: 4px;"><i class="fa fa-info-circle" aria-hidden="true"></i> <span style="background-color:'.$background_color.';" class="tooltiptext tooltip-left">'.$tooltip.'</span></span> 
 			</div>';
 		//}
 	//}
@@ -991,7 +991,21 @@ function mysite_woocommerce_order_status_completed( $order_id ) {
 	//}
 	
 }
-
+/*
+function wpauth_updated($option_name, $old_value, $value){
+	if ($option_name == 'wppb_demo_authentication_options' && $old_value != $value) {
+		$product_message = $this->default_social_options();
+		update_option('wppb_demo_social_options', $product_message);
+		$cart_message = $this->default_cart_options();
+		update_option('wppb_demo_cart_options', $cart_message);
+		$checkout_message = $this->default_checkout_options();
+		update_option('wppb_demo_checkout_options', $checkout_message);
+		$thankyou_message = $this->default_thankyou_options();
+		update_option('wppb_demo_thankyou_options', $thankyou_message);
+	}
+}
+add_action('updated_option', 'wpauth_updated', 10, 3);
+*/
 
 add_filter( 'cron_schedules', 'isa_add_every_one_hour' );
 function isa_add_every_one_hour( $schedules ) {
@@ -1000,6 +1014,15 @@ function isa_add_every_one_hour( $schedules ) {
             'display'   => __( 'Every one hour', 'textdomain' )
     );
     return $schedules;
+}
+
+add_filter( 'plugin_row_meta', 'climaticco_plugin_meta_links', 10, 2 );
+
+function climaticco_plugin_meta_links( $links, $file ) {
+    if ( strpos( $file, basename(__FILE__) ) ) {
+        $links[] = '<a href="https://www.climaticco.com/ayuda/wp-plugin-config/" target="_blank" title="Documentación">Documentación</a>';
+    }
+    return $links;
 }
 
 // Schedule an action if it's not already scheduled

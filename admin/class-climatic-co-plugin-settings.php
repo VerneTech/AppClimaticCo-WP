@@ -92,46 +92,99 @@ class ClimaticCo_Admin_Settings {
 
 	/**
 	 * Provide default values for the Social Options.
+	 * default messages
 	 *
 	 * @return array
 	 */
 	 
 	public function default_social_options() {
 
+		$options = get_option('wppb_demo_authentication_options');
+		//var_dump($options);
 		$defaults = array(
 			'product_message'		=>	''
 		);
 
+		if ($options['apikey'] != '') {
+			//var_dump("SE INICIALIZA");
+			$all_options = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/spa/product');
+			//var_dump($all_options);
+			$defaults = array(
+				'product_message'		=>	$all_options[0]['MessageId']
+			);
+			
+		}
+
+	
 		return  $defaults;
 
 	}
 	
 	public function default_cart_options() {
 
+		$options = get_option('wppb_demo_authentication_options');
+		//var_dump($options);
 		$defaults = array(
 			'cart_message'		=>	''
 		);
 
+		if ($options['apikey'] != '') {
+			//var_dump("SE INICIALIZA");
+			$all_options = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/spa/cart');
+			//var_dump($all_options);
+			$defaults = array(
+				'cart_message'		=>	$all_options[0]['MessageId']
+			);
+			
+		}
+
+	
 		return  $defaults;
 
 	}
 	
 	public function default_checkout_options() {
 
+		$options = get_option('wppb_demo_authentication_options');
+		//var_dump($options);
 		$defaults = array(
 			'checkout_message'		=>	''
 		);
 
+		if ($options['apikey'] != '') {
+			//var_dump("SE INICIALIZA");
+			$all_options = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/spa/check-out');
+			//var_dump($all_options);
+			$defaults = array(
+				'checkout_message'		=>	$all_options[0]['MessageId']
+			);
+			
+		}
+
+	
 		return  $defaults;
 
 	}
 	
 	public function default_thankyou_options() {
 
+		$options = get_option('wppb_demo_authentication_options');
+		//var_dump($options);
 		$defaults = array(
 			'thankyou_message'		=>	''
 		);
 
+		if ($options['apikey'] != '') {
+			//var_dump("SE INICIALIZA");
+			$all_options = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/spa/thank-you');
+			//var_dump($all_options);
+			$defaults = array(
+				'thankyou_message'		=>	$all_options[0]['MessageId']
+			);
+			
+		}
+
+	
 		return  $defaults;
 
 	}
@@ -268,7 +321,7 @@ class ClimaticCo_Admin_Settings {
 	public function authentication_options_callback() {
 		$options = get_option('wppb_demo_authentication_options');
 		//var_dump($options);
-		echo '<p><b style="font-size:16px;margin-top: 30px;display: block;">' . __( 'Configuración general', 'wppb-demo-plugin' ) . '</b></p>';
+		echo '<p><b style="font-size:16px;margin-top: 30px;display: block;">' . __( 'Introduce el código que te hemos facilitado', 'wppb-demo-plugin' ) . '</b></p>';
 	} // end general_options_callback
 	
 
@@ -441,10 +494,11 @@ class ClimaticCo_Admin_Settings {
 	public function initialize_authentication_options() {
 		
 		//delete_option('wppb_demo_social_options');
+
 		if( false == get_option( 'wppb_demo_authentication_options' ) ) {
 			$default_array = $this->default_social_options();
 			update_option( 'wppb_demo_authentication_options', $default_array );
-		} // end if
+		}// end if
 
 		add_settings_section(
 			'authentication_settings_section',			// ID used to identify this section and with which to register options
@@ -467,8 +521,27 @@ class ClimaticCo_Admin_Settings {
 			array( $this, 'sanitize_authentication_options')
 		);
 
-	}
+		if (false != get_option( 'wppb_demo_authentication_options' ) && get_option('wppb_demo_social_options')['product_message'] == '') {
+			$product_message = $this->default_social_options();
+			update_option('wppb_demo_social_options', $product_message);
+		}
 
+		if (false != get_option( 'wppb_demo_authentication_options' ) && get_option('wppb_demo_cart_options')['cart_message'] == '') {
+			$cart_message = $this->default_cart_options();
+			update_option('wppb_demo_cart_options', $cart_message);
+		}
+
+		if (false != get_option( 'wppb_demo_authentication_options' ) && get_option('wppb_demo_checkout_options')['checkout_message'] == '') {
+			$checkout_message = $this->default_checkout_options();
+			update_option('wppb_demo_checkout_options', $checkout_message);
+		}
+
+		if (false != get_option( 'wppb_demo_authentication_options' ) && get_option('wppb_demo_thankyou_options')['thankyou_message'] == '') {
+			$thankyou_message = $this->default_thankyou_options();
+			update_option('wppb_demo_thankyou_options', $thankyou_message);
+		}
+
+	}
 
 	/**
 	 * Initializes the theme's social options by registering the Sections,
@@ -716,7 +789,7 @@ class ClimaticCo_Admin_Settings {
 		//print_r($all_options);
 		$html = '<div class="group-configuration">';
 		$html .= '<select class="message-selection" id="product_message" name="wppb_demo_display_options[product_message]">';
-		$html .= '<option value="">' . __( 'Select a message option...', 'wppb-demo-plugin' ) . '</option>';
+		
 		if(!empty($all_options)){
 			foreach($all_options as $all_option){				
 				$html .= '<option value="'.$all_option['MessageId'].'"' . selected( $options['product_message'] , $all_option['MessageId'], false) . '>' . __( $all_option['translations'][0]['content'], 'wppb-demo-plugin' ) . '</option>';
@@ -789,7 +862,7 @@ class ClimaticCo_Admin_Settings {
 		//print_r($all_options);
 		$html = '<div class="group-configuration">';
 		$html .= '<select class="message-selection" id="cart_message" name="wppb_demo_display_options[cart_message]" style="width: 100%;height: 38px;background-color: #ccc; max-width: 100%;">';
-		$html .= '<option value="">' . __( 'Select a message option...', 'wppb-demo-plugin' ) . '</option>';
+		
 		if(!empty($all_options)){
 			foreach($all_options as $all_option){				
 				$html .= '<option value="'.$all_option['MessageId'].'"' . selected( $options['cart_message'] , $all_option['MessageId'], false) . '>' . __( $all_option['translations'][0]['content'], 'wppb-demo-plugin' ) . '</option>';
@@ -853,7 +926,7 @@ class ClimaticCo_Admin_Settings {
 
 		$html = '<div class="group-configuration">';
 		$html .= '<select class="message-selection" id="checkout_message" name="wppb_demo_display_options[checkout_message]" style="width:100%;height: 38px;background-color: #ccc; max-width: 100%;">';
-		$html .= '<option value="">' . __( 'Select a message option...', 'wppb-demo-plugin' ) . '</option>';
+		
 		if(!empty($all_options)){
 			foreach($all_options as $all_option){				
 				$html .= '<option value="'.$all_option['MessageId'].'"' . selected( $options['checkout_message'] , $all_option['MessageId'], false) . '>' . __( $all_option['translations'][0]['content'], 'wppb-demo-plugin' ) . '</option>';
@@ -919,7 +992,7 @@ class ClimaticCo_Admin_Settings {
 
 		$html = '<div class="group-configuration">';
 		$html .= '<select class="message-selection" id="thankyou_message" name="wppb_demo_display_options[thankyou_message]" style="width: 100%;height: 38px;background-color: #ccc; max-width: 100%;">';
-		$html .= '<option value="">' . __( 'Select a message option...', 'wppb-demo-plugin' ) . '</option>';
+		
 		if(!empty($all_options)){
 			foreach($all_options as $all_option){				
 				$html .= '<option value="'.$all_option['MessageId'].'"' . selected( $options['thankyou_message'] , $all_option['MessageId'], false) . '>' . __( $all_option['translations'][0]['content'], 'wppb-demo-plugin' ) . '</option>';
@@ -978,7 +1051,7 @@ class ClimaticCo_Admin_Settings {
 		//print_r($all_options);
 
 		$html = '<select id="product_tooltip" class="tooltip_select" name="wppb_demo_display_options[product_tooltip]" style="width: 100%;height: 38px;background-color: #ccc; max-width: 100%;">';
-		$html .= '<option value="">' . __( 'Select a message option...', 'wppb-demo-plugin' ) . '</option>';
+		
 		if(!empty($all_options)){
 			foreach($all_options as $all_option){				
 				$html .= '<option value="'.$all_option['MessageId'].'"' . selected( $options['product_tooltip'] , $all_option['MessageId'], false) . '>' . __( $all_option['translations'][0]['tooltip'], 'wppb-demo-plugin' ) . '</option>';
@@ -998,7 +1071,7 @@ class ClimaticCo_Admin_Settings {
 		//print_r($all_options);
 
 		$html = '<select id="cart_tooltip" class="tooltip_select" name="wppb_demo_display_options[cart_tooltip]" style="width: 100%;height: 38px;background-color: #ccc; max-width: 100%;">';
-		$html .= '<option value="">' . __( 'Select a message option...', 'wppb-demo-plugin' ) . '</option>';
+		
 		if(!empty($all_options)){
 			foreach($all_options as $all_option){				
 				$html .= '<option value="'.$all_option['MessageId'].'"' . selected( $options['cart_tooltip'] , $all_option['MessageId'], false) . '>' . __( $all_option['translations'][0]['tooltip'], 'wppb-demo-plugin' ) . '</option>';
@@ -1018,7 +1091,7 @@ class ClimaticCo_Admin_Settings {
 		//print_r($all_options);
 
 		$html = '<select id="checkout_tooltip" class="tooltip_select" name="wppb_demo_display_options[checkout_tooltip]" style="width: 100%;height: 38px;background-color: #ccc; max-width: 100%;">';
-		$html .= '<option value="">' . __( 'Select a message option...', 'wppb-demo-plugin' ) . '</option>';
+		
 		if(!empty($all_options)){
 			foreach($all_options as $all_option){				
 				$html .= '<option value="'.$all_option['MessageId'].'"' . selected( $options['checkout_tooltip'] , $all_option['MessageId'], false) . '>' . __( $all_option['translations'][0]['tooltip'], 'wppb-demo-plugin' ) . '</option>';
@@ -1038,7 +1111,7 @@ class ClimaticCo_Admin_Settings {
 		//print_r($all_options);
 
 		$html = '<select id="thankyou_tooltip" class="tooltip_select" name="wppb_demo_display_options[thankyou_tooltip]" style="width: 100%;height: 38px;background-color: #ccc; max-width: 100%;">';
-		$html .= '<option value="">' . __( 'Select a message option...', 'wppb-demo-plugin' ) . '</option>';
+		
 		if(!empty($all_options)){
 			foreach($all_options as $all_option){				
 				$html .= '<option value="'.$all_option['MessageId'].'"' . selected( $options['thankyou_tooltip'] , $all_option['MessageId'], false) . '>' . __( $all_option['translations'][0]['tooltip'], 'wppb-demo-plugin' ) . '</option>';

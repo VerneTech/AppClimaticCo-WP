@@ -109,18 +109,17 @@ body .stumpwrap {
   visibility: visible;
 }
 .tooltip-left {
-    top: 122%;
+    bottom: 122%;
     right: 0%;
 }
 .tooltip-left::after {
     content: "";
     position: absolute;
-    top: 0%;
+    bottom: -9%;
     right: 2%;
-    margin-top: -10px;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent transparent   #555 transparent;
+    border-color: #555 transparent transparent   transparent;
 }
 body{ position: relative;}
 .stumpwrap { 
