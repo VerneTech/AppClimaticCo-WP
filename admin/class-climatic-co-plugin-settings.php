@@ -62,7 +62,6 @@ class ClimaticCo_Admin_Settings {
 	public function default_display_options() {
 
 		$defaults = array (
-			'black_background' => '',
 			'display_none' => '',
 			'prod_under_h1' => '',
 			'cart_under_h1' => '',
@@ -97,23 +96,34 @@ class ClimaticCo_Admin_Settings {
 	 * @return array
 	 */
 	 
-	public function default_social_options() {
+	public function default_social_options($apikey = null) {
 
-		$options = get_option('wppb_demo_authentication_options');
-		//var_dump($options);
 		$defaults = array(
 			'product_message'		=>	''
 		);
-
-		if ($options['apikey'] != '') {
-			//var_dump("SE INICIALIZA");
-			$all_options = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/spa/product');
+		if ($apikey != null) {
+			$all_options = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/spa/product', $apikey);
 			//var_dump($all_options);
 			$defaults = array(
 				'product_message'		=>	$all_options[0]['MessageId']
 			);
+		}else{
+			$options = get_option('wppb_demo_authentication_options');
+			//var_dump($options);
 			
+
+			if ($options['apikey'] != '') {
+				//var_dump("SE INICIALIZA");
+				$all_options = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/spa/product');
+				//var_dump($all_options);
+				$defaults = array(
+					'product_message'		=>	$all_options[0]['MessageId']
+				);
+
+			}
 		}
+
+		
 
 	
 		return  $defaults;
@@ -521,25 +531,9 @@ class ClimaticCo_Admin_Settings {
 			array( $this, 'sanitize_authentication_options')
 		);
 
-		if (false != get_option( 'wppb_demo_authentication_options' ) && get_option('wppb_demo_social_options')['product_message'] == '') {
-			$product_message = $this->default_social_options();
-			update_option('wppb_demo_social_options', $product_message);
-		}
+		//register_setting('wppb_demo_authentication_options', 'wppb_demo_authentication_options', array($this, 'default_message_settings'));
 
-		if (false != get_option( 'wppb_demo_authentication_options' ) && get_option('wppb_demo_cart_options')['cart_message'] == '') {
-			$cart_message = $this->default_cart_options();
-			update_option('wppb_demo_cart_options', $cart_message);
-		}
-
-		if (false != get_option( 'wppb_demo_authentication_options' ) && get_option('wppb_demo_checkout_options')['checkout_message'] == '') {
-			$checkout_message = $this->default_checkout_options();
-			update_option('wppb_demo_checkout_options', $checkout_message);
-		}
-
-		if (false != get_option( 'wppb_demo_authentication_options' ) && get_option('wppb_demo_thankyou_options')['thankyou_message'] == '') {
-			$thankyou_message = $this->default_thankyou_options();
-			update_option('wppb_demo_thankyou_options', $thankyou_message);
-		}
+		
 
 	}
 
@@ -1409,6 +1403,56 @@ class ClimaticCo_Admin_Settings {
 			} // end if
 
 		} // end foreach
+		/* if (!function_exists('write_log')) {
+
+			function write_log($log) {
+				if (true === WP_DEBUG) {
+					if (is_array($log) || is_object($log)) {
+						error_log(print_r($log, true));
+					} else {
+						error_log($log);
+					}
+				}
+			}
+		
+		}
+
+		write_log('VALIDATED DEFAULT SETTINGS');
+		//write_log($output);
+
+		$product_message = $this->default_social_options($output['apikey']);
+		update_option('wppb_demo_social_options', $product_message[0]);
+
+		$cart_message = $this->default_cart_options();
+		update_option('wppb_demo_cart_options', $cart_message);
+
+		$checkout_message = $this->default_checkout_options();
+		update_option('wppb_demo_checkout_options', $checkout_message);
+
+		$thankyou_message = $this->default_thankyou_options();
+		update_option('wppb_demo_thankyou_options', $thankyou_message);
+
+		createsession(); */
+
+		/* if (get_option('wppb_demo_social_options')['product_message'] == '') {
+			$product_message = $this->default_social_options();
+			update_option('wppb_demo_social_options', $product_message);
+		}
+
+		if (get_option('wppb_demo_cart_options')['cart_message'] == '') {
+			$cart_message = $this->default_cart_options();
+			update_option('wppb_demo_cart_options', $cart_message);
+		}
+
+		if (get_option('wppb_demo_checkout_options')['checkout_message'] == '') {
+			$checkout_message = $this->default_checkout_options();
+			update_option('wppb_demo_checkout_options', $checkout_message);
+		}
+
+		if (get_option('wppb_demo_thankyou_options')['thankyou_message'] == '') {
+			$thankyou_message = $this->default_thankyou_options();
+			update_option('wppb_demo_thankyou_options', $thankyou_message);
+		} */
 
 		// Return the new collection
 		return apply_filters( 'sanitize_authentication_options', $output, $input );

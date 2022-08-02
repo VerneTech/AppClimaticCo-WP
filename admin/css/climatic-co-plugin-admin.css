@@ -149,7 +149,7 @@ a.nav-tab.nav-tab-active {
 }
 .alertbox * {
     display: inline-block;
-    vertical-align: middle;
+    /* vertical-align: middle; */
 }
 .alertbox img {
     width: 30px;
