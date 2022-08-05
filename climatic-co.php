@@ -1052,7 +1052,7 @@ add_filter( 'plugin_row_meta', 'climaticco_plugin_meta_links', 10, 2 );
 function climaticco_plugin_meta_links( $links, $file ) {
 	
     if ( strpos( $file, basename(__FILE__) ) ) {
-        $links[2] = '<a href="https://www.climaticco.com/ayuda/wp-plugin-config/" target="_blank" title="Documentación">Documentación</a>';
+        $links[2] = '<a href="https://www.climaticco.com/ayuda/wp-plugin-config/" target="_blank" title="Documentación">Ver detalles</a>';
 		//var_dump($links);
 	}
     return $links;
