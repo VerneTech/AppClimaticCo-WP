@@ -137,7 +137,7 @@ a.nav-tab.nav-tab-active {
 .closebtn {
   color: white;
   font-weight: bold;
-  float: right;
+  margin: 4px;
   font-size: 22px;
   line-height: 20px;
   cursor: pointer;
