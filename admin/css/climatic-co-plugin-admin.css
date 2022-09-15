@@ -228,3 +228,15 @@ p.submit input#submit{
     background-color: #6c9bf3;
     border: none;
 }
+
+.color-picker-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.color-picker-container .wp-picker-container button.button.wp-color-result {
+    margin: 0 10px;
+}

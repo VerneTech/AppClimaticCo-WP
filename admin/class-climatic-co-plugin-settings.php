@@ -837,7 +837,7 @@ class ClimaticCo_Admin_Settings {
 			$url = $options['product_color'];
 		} 
 		
-		$html .='<input type="text" id="product_color" class="my-color-field" name="wppb_demo_display_options[product_color]" value="' . $url . '" /> <span>Color de fondo</span>';	
+		$html .='<div class="color-picker-container"><span>Color de fondo</span> <input type="text" id="product_color" class="my-color-field" name="wppb_demo_display_options[product_color]" value="' . $url . '" /> </div>';	
 		
 		$html .= '</div>';
 
@@ -903,7 +903,7 @@ class ClimaticCo_Admin_Settings {
 			$url = $options['cart_color'];
 		} 		
 		
-		$html .= '<input type="text" id="cart_color" class="my-color-field" name="wppb_demo_display_options[cart_color]" value="' . $url . '" /> <span>Color de fondo</span>';
+		$html .= '<div class="color-picker-container"> <span>Color de fondo</span><input type="text" id="cart_color" class="my-color-field" name="wppb_demo_display_options[cart_color]" value="' . $url . '" /> </div>';
 		$html .= '</div>';
 
 		echo $html;
@@ -968,7 +968,7 @@ class ClimaticCo_Admin_Settings {
 			$url = $options['checkout_color'];
 		} 		
 		
-		$html .= '<input type="text" id="cart_color" class="my-color-field" name="wppb_demo_display_options[checkout_color]" value="' . $url . '" /> <span>Color de fondo</span>';
+		$html .= '<div class="color-picker-container"><span>Color de fondo</span><input type="text" id="cart_color" class="my-color-field" name="wppb_demo_display_options[checkout_color]" value="' . $url . '" /> </div>';
 		$html .= '</div>';
 
 		echo $html;
@@ -1030,7 +1030,7 @@ class ClimaticCo_Admin_Settings {
 			$url = $options['thankyou_color'];
 		} 		
 		
-		$html .= '<input type="text" id="cart_color" class="my-color-field" name="wppb_demo_display_options[thankyou_color]" value="' . $url . '" /> <span>Color de fondo</span>';
+		$html .= '<div class="color-picker-container"><span>Color de fondo</span><input type="text" id="cart_color" class="my-color-field" name="wppb_demo_display_options[thankyou_color]" value="' . $url . '" /> </div>';
 		$html .= '</div>';
 
 		echo $html;
