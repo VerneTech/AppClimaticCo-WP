@@ -87,6 +87,7 @@ body .stumpwrap {
 .tooltip {
   position: relative;
   display: inline-flex;
+  margin-right: 5px;
 }
 
 .tooltip .tooltiptext {

@@ -597,7 +597,7 @@ function custom_action_after_single_product_title() {
 			
 			
 			$allmsg = '<div class="alertbox alertbox-'.$options['prod_alignment'].'" style="background-color:'.$background_color.';font-size:'.$options['prod_fontsize'].'em;"> 
-			'.'<span class="tooltip"><img src="'.$black_background.'"></span> <span class="message-content">'.$msg.'<span class="closebtn tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span></span>'.'
+			'.'<span class="message-content"><span class="tooltip"><img src="'.$black_background.'"></span>'.$msg.'<span class="closebtn tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span></span>'.'
 		</div>';
 			
 			
@@ -670,7 +670,7 @@ function woocommerce_output_all_notices1() {
 		//$allmsg = '<span class="tooltip"><img src="'.$black_background.'"></span> <span class="message-content">'.$msg.'</span>';
 		
 		echo '<div class="alertbox alertbox-'.$options['cart_alignment'].'" style="background-color:'.$background_color.';text-align: '.$options['cart_alignment'].';font-size:'.$options['cart_fontsize'].'em;">
-			'.'<span class="tooltip"><img src="'.$black_background.'"></span> <span class="message-content">'.$msg.'<span class="closebtn tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span></span>'.'
+			'.' <span class="message-content"><span class="tooltip"><img src="'.$black_background.'"></span>'.$msg.'<span class="closebtn tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span></span>'.'
 			 
 		</div>';
 	}
@@ -739,7 +739,7 @@ function woocommerce_before_checkout_form_before() {
 		//$allmsg = '<span class="tooltip"><img src="'.$black_background.'"></span> <span class="message-content">'.$msg.'</span>';
 		
 		echo '<div class="alertbox alertbox-'.$options['checkout_alignment'].'" style="clear: both; background-color:'.$background_color.';text-align: '.$options['checkout_alignment'].';font-size:'.$options['checkout_fontsize'].'em;">
-			'.'<span class="tooltip"><img src="'.$black_background.'"></span> <span class="message-content">'.$msg.'<span class="closebtn tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span> </span>'.'
+			'.' <span class="message-content"><span class="tooltip"><img src="'.$black_background.'"></span>'.$msg.'<span class="closebtn tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span> </span>'.'
 		</div>';
 	}
 }
@@ -787,10 +787,10 @@ function woo_change_order_received_text( $str, $order ) {
 					}
 				}
 			}
-			
-			
+			$link = $session['thank-you']['link'];
+			//var_dump($link);
 			//$allmsg = '<span class="tooltip"><img src="'.$black_background.'"></span> <span class="message-content" style="margin-top: 2px;">'.$msg.' <a href="'.$link.'" target="_blank" style="display: inline-flex;align-items: flex-start;padding: 0; margin-top: -4;">Más información</a></span>';
-			
+			//var_dump($session['thank-you']['link']);
 			$new_str = '<div class="alertbox alertbox-'.$options['thankyou_alignment'].'" style="background-color:'.$background_color.';text-align: '.$options['thankyou_alignment'].';font-size:'.$options['thankyou_fontsize'].'em;">
 			'.' <span class="message-content" style="margin-top: 2px;"><span class="tooltip" style="margin-right: 5px;"><img src="'.$black_background.'"></span>'.$msg.' <a href="'.$link.'" target="_blank" style="display: inline-flex;align-items: flex-start;padding: 0; margin-top: -4;">Más información</a><span class="closebtn tooltip" style="margin-top: 4px;"><i class="fa fa-info-circle" aria-hidden="true"></i> <span style="background-color:'.$background_color.';" class="tooltiptext tooltip-left">'.$tooltip.'</span></span> </span>'.'
 			</div>';
