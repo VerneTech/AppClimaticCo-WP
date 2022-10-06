@@ -81,7 +81,7 @@ class ClimaticCo_Admin_Settings {
 			'checkout_color' => '',
 			'thankyou_message' => '',
 			'thankyou_alignment' => 'left',
-			'thankyou_fontsize' => '1.5',
+			'thankyou_fontsize' => '1.2',
 			'thankyou_color' => '',
 		  );
 
@@ -478,8 +478,8 @@ class ClimaticCo_Admin_Settings {
 		);
 
 		add_settings_field(
-			'ClimaticCo para fondos oscuros',
-			__( 'ClimaticCo para fondos oscuros', 'wppb-demo-plugin' ),
+			'Sello para fondos oscuros',
+			__( 'Sello para fondos oscuros', 'wppb-demo-plugin' ),
 			array( $this, 'checkbox_black_background_callback'),
 			'wppb_demo_display_options',
 			'general_settings_section'
@@ -799,7 +799,7 @@ class ClimaticCo_Admin_Settings {
 		$html .= '<div class="tab_title" id="prod_tab">Configuración avanzada <i class="fa fa-chevron-down" aria-hidden="true"></i></div>';
 		
 		$html .= '<div class="tab_title_content" id="prod_tab_content">';
-		$display_none = 'display:none1;';
+		$display_none = 'display:block;';
 		if($options['product_message'] !=''){			
 			$display_none = 'display:block;';
 		}
@@ -815,16 +815,32 @@ class ClimaticCo_Admin_Settings {
 		$html .= '<option value="right" ' . selected( $options['prod_alignment'] , 'right', false) . '>Alineado a la derecha</option>';		
 		$html .= '</select>';
 		
-		$display_none = 'display:none1;';
+		$display_none = 'display:block;';
 		if($options['product_message'] !=''){			
 			$display_none = 'display:block;';
 		}
+		//var_dump($display_none);
 		$html .= '<select id="prod_fontsize" name="wppb_demo_display_options[prod_fontsize]" style="width: 360px;max-width: 100%;'.$display_none.'">';
-		$html .= '<option value="">' . __( 'Seleccionar tamaño de fuente', 'wppb-demo-plugin' ) . '</option>';
-		$html .= '<option value="1" ' . selected( $options['prod_fontsize'] , 1, false) . '>1em</option>';	
-		$html .= '<option value="1.5" ' . selected( $options['prod_fontsize'] , 1.5, false) . '>1.5em</option>';	
-		$html .= '<option value="2" ' . selected( $options['prod_fontsize'] , 2, false) . '>2em</option>';	
-		$html .= '<option value="2.5" ' . selected( $options['prod_fontsize'] , 2.5, false) . '>2.5em</option>';	
+		$html .= '<option value="1" ' . selected( $options['prod_fontsize'] , 1, false) . '>1em</option>';
+		$html .= '<option value="1.1" ' . selected( $options['prod_fontsize'] , 1.1, false) . '>1.1em</option>';
+		$html .= '<option value="1.2" ' . selected( $options['prod_fontsize'] , 1.2, false) . '>1.2em</option>';
+		$html .= '<option value="1.3" ' . selected( $options['prod_fontsize'] , 1.3, false) . '>1.3em</option>';
+		$html .= '<option value="1.4" ' . selected( $options['prod_fontsize'] , 1.4, false) . '>1.4em</option>';	
+		$html .= '<option value="1.5" ' . selected( $options['prod_fontsize'] , 1.5, false) . '>1.5em</option>';
+		$html .= '<option value="1.6" ' . selected( $options['prod_fontsize'] , 1.6, false) . '>1.6em</option>';
+		$html .= '<option value="1.7" ' . selected( $options['prod_fontsize'] , 1.7, false) . '>1.7em</option>';
+		$html .= '<option value="1.8" ' . selected( $options['prod_fontsize'] , 1.8, false) . '>1.8em</option>';
+		$html .= '<option value="1.9" ' . selected( $options['prod_fontsize'] , 1.9, false) . '>1.9em</option>';	
+		$html .= '<option value="2" ' . selected( $options['prod_fontsize'] , 2, false) . '>2em</option>';
+		$html .= '<option value="2.1" ' . selected( $options['prod_fontsize'] , 2.1, false) . '>2.1em</option>';
+		$html .= '<option value="2.2" ' . selected( $options['prod_fontsize'] , 2.2, false) . '>2.2em</option>';
+		$html .= '<option value="2.3" ' . selected( $options['prod_fontsize'] , 2.3, false) . '>2.3em</option>';
+		$html .= '<option value="2.4" ' . selected( $options['prod_fontsize'] , 2.4, false) . '>2.4em</option>';	
+		$html .= '<option value="2.5" ' . selected( $options['prod_fontsize'] , 2.5, false) . '>2.5em</option>';
+		$html .= '<option value="2.6" ' . selected( $options['prod_fontsize'] , 2.6, false) . '>2.6em</option>';
+		$html .= '<option value="2.7" ' . selected( $options['prod_fontsize'] , 2.7, false) . '>2.7em</option>';
+		$html .= '<option value="2.8" ' . selected( $options['prod_fontsize'] , 2.8, false) . '>2.8em</option>';
+		$html .= '<option value="2.9" ' . selected( $options['prod_fontsize'] , 2.9, false) . '>2.9em</option>';	
 		$html .= '<option value="3" ' . selected( $options['prod_fontsize'] , 3, false) . '>3em</option>';	
 		$html .= '<option value="3.5" ' . selected( $options['prod_fontsize'] , 3.5, false) . '>3.5em</option>';	
 		$html .= '<option value="4" ' . selected( $options['prod_fontsize'] , 4, false) . '>4em</option>';	
@@ -868,7 +884,7 @@ class ClimaticCo_Admin_Settings {
 		$html .= '</div>';
 		$html .= '<div class="tab_title" id="cart_tab">Configuración avanzada <i class="fa fa-chevron-down" aria-hidden="true"></i></div>';
 		$html .= '<div class="tab_title_content" id="cart_tab_content">';
-		$display_none = 'display:none1;';
+		$display_none = 'display:block;';
 		if($options['cart_message'] !=''){			
 			$display_none = 'display:block;';
 		}
@@ -881,16 +897,32 @@ class ClimaticCo_Admin_Settings {
 		$html .= '<option value="center" ' . selected( $options['cart_alignment'] , 'center', false) . '>Alineado al centro</option>';
 		$html .= '<option value="right" ' . selected( $options['cart_alignment'] , 'right', false) . '>Alineado a la derecha</option>';		
 		$html .= '</select>';
-		$display_none = 'display:none1;';
+		$display_none = 'display:block;';
 		if($options['cart_message'] !=''){			
 			$display_none = 'display:block;';
 		}
 		$html .= '<select id="cart_fontsize" name="wppb_demo_display_options[cart_fontsize]" style="width: 360px;max-width: 100%;'.$display_none.'">';
 		$html .= '<option value="">' . __( 'Seleccionar tamaño de fuente', 'wppb-demo-plugin' ) . '</option>';
-		$html .= '<option value="1" ' . selected( $options['cart_fontsize'] , 1, false) . '>1em</option>';	
-		$html .= '<option value="1.5" ' . selected( $options['cart_fontsize'] , 1.5, false) . '>1.5em</option>';	
-		$html .= '<option value="2" ' . selected( $options['cart_fontsize'] , 2, false) . '>2em</option>';	
-		$html .= '<option value="2.5" ' . selected( $options['cart_fontsize'] , 2.5, false) . '>2.5em</option>';	
+		$html .= '<option value="1" ' . selected( $options['cart_fontsize'] , 1, false) . '>1em</option>';
+		$html .= '<option value="1.1" ' . selected( $options['cart_fontsize'] , 1.1, false) . '>1.1em</option>';
+		$html .= '<option value="1.2" ' . selected( $options['cart_fontsize'] , 1.2, false) . '>1.2em</option>';
+		$html .= '<option value="1.3" ' . selected( $options['cart_fontsize'] , 1.3, false) . '>1.3em</option>';
+		$html .= '<option value="1.4" ' . selected( $options['cart_fontsize'] , 1.4, false) . '>1.4em</option>';	
+		$html .= '<option value="1.5" ' . selected( $options['cart_fontsize'] , 1.5, false) . '>1.5em</option>';
+		$html .= '<option value="1.6" ' . selected( $options['cart_fontsize'] , 1.6, false) . '>1.6em</option>';
+		$html .= '<option value="1.7" ' . selected( $options['cart_fontsize'] , 1.7, false) . '>1.7em</option>';
+		$html .= '<option value="1.8" ' . selected( $options['cart_fontsize'] , 1.8, false) . '>1.8em</option>';
+		$html .= '<option value="1.9" ' . selected( $options['cart_fontsize'] , 1.9, false) . '>1.9em</option>';	
+		$html .= '<option value="2" ' . selected( $options['cart_fontsize'] , 2, false) . '>2em</option>';
+		$html .= '<option value="2.1" ' . selected( $options['cart_fontsize'] , 2.1, false) . '>2.1em</option>';
+		$html .= '<option value="2.2" ' . selected( $options['cart_fontsize'] , 2.2, false) . '>2.2em</option>';
+		$html .= '<option value="2.3" ' . selected( $options['cart_fontsize'] , 2.3, false) . '>2.3em</option>';
+		$html .= '<option value="2.4" ' . selected( $options['cart_fontsize'] , 2.4, false) . '>2.4em</option>';	
+		$html .= '<option value="2.5" ' . selected( $options['cart_fontsize'] , 2.5, false) . '>2.5em</option>';
+		$html .= '<option value="2.6" ' . selected( $options['cart_fontsize'] , 2.6, false) . '>2.6em</option>';
+		$html .= '<option value="2.7" ' . selected( $options['cart_fontsize'] , 2.7, false) . '>2.7em</option>';
+		$html .= '<option value="2.8" ' . selected( $options['cart_fontsize'] , 2.8, false) . '>2.8em</option>';
+		$html .= '<option value="2.9" ' . selected( $options['cart_fontsize'] , 2.9, false) . '>2.9em</option>';	
 		$html .= '<option value="3" ' . selected( $options['cart_fontsize'] , 3, false) . '>3em</option>';	
 		$html .= '<option value="3.5" ' . selected( $options['cart_fontsize'] , 3.5, false) . '>3.5em</option>';	
 		$html .= '<option value="4" ' . selected( $options['cart_fontsize'] , 4, false) . '>4em</option>';	
@@ -932,7 +964,7 @@ class ClimaticCo_Admin_Settings {
 		$html .= '</div>';
 		$html .= '<div class="tab_title" id="checkout_tab">Configuración avanzada <i class="fa fa-chevron-down" aria-hidden="true"></i></div>';
 		$html .= '<div class="tab_title_content" id="checkout_tab_content">';
-		$display_none = 'display:none1;';
+		$display_none = 'display:block;';
 		if($options['checkout_message'] !=''){			
 			$display_none = 'display:block;';
 		}
@@ -946,16 +978,32 @@ class ClimaticCo_Admin_Settings {
 		$html .= '<option value="center" ' . selected( $options['checkout_alignment'] , 'center', false) . '>Alineado al centro</option>';
 		$html .= '<option value="right" ' . selected( $options['checkout_alignment'] , 'right', false) . '>Alineado a la derecha</option>';		
 		$html .= '</select>';
-		$display_none = 'display:none1;';
+		$display_none = 'display:block;';
 		if($options['checkout_message'] !=''){			
 			$display_none = 'display:block;';
 		}
 		$html .= '<select id="checkout_fontsize" name="wppb_demo_display_options[checkout_fontsize]" style="width: 360px;max-width: 100%;'.$display_none.'">';
 		$html .= '<option value="">' . __( 'Seleccionar tamaño de fuente', 'wppb-demo-plugin' ) . '</option>';
-		$html .= '<option value="1" ' . selected( $options['checkout_fontsize'] , 1, false) . '>1em</option>';	
-		$html .= '<option value="1.5" ' . selected( $options['checkout_fontsize'] , 1.5, false) . '>1.5em</option>';	
-		$html .= '<option value="2" ' . selected( $options['checkout_fontsize'] , 2, false) . '>2em</option>';	
-		$html .= '<option value="2.5" ' . selected( $options['checkout_fontsize'] , 2.5, false) . '>2.5em</option>';	
+		$html .= '<option value="1" ' . selected( $options['checkout_fontsize'] , 1, false) . '>1em</option>';
+		$html .= '<option value="1.1" ' . selected( $options['checkout_fontsize'] , 1.1, false) . '>1.1em</option>';
+		$html .= '<option value="1.2" ' . selected( $options['checkout_fontsize'] , 1.2, false) . '>1.2em</option>';
+		$html .= '<option value="1.3" ' . selected( $options['checkout_fontsize'] , 1.3, false) . '>1.3em</option>';
+		$html .= '<option value="1.4" ' . selected( $options['checkout_fontsize'] , 1.4, false) . '>1.4em</option>';	
+		$html .= '<option value="1.5" ' . selected( $options['checkout_fontsize'] , 1.5, false) . '>1.5em</option>';
+		$html .= '<option value="1.6" ' . selected( $options['checkout_fontsize'] , 1.6, false) . '>1.6em</option>';
+		$html .= '<option value="1.7" ' . selected( $options['checkout_fontsize'] , 1.7, false) . '>1.7em</option>';
+		$html .= '<option value="1.8" ' . selected( $options['checkout_fontsize'] , 1.8, false) . '>1.8em</option>';
+		$html .= '<option value="1.9" ' . selected( $options['checkout_fontsize'] , 1.9, false) . '>1.9em</option>';	
+		$html .= '<option value="2" ' . selected( $options['checkout_fontsize'] , 2, false) . '>2em</option>';
+		$html .= '<option value="2.1" ' . selected( $options['checkout_fontsize'] , 2.1, false) . '>2.1em</option>';
+		$html .= '<option value="2.2" ' . selected( $options['checkout_fontsize'] , 2.2, false) . '>2.2em</option>';
+		$html .= '<option value="2.3" ' . selected( $options['checkout_fontsize'] , 2.3, false) . '>2.3em</option>';
+		$html .= '<option value="2.4" ' . selected( $options['checkout_fontsize'] , 2.4, false) . '>2.4em</option>';	
+		$html .= '<option value="2.5" ' . selected( $options['checkout_fontsize'] , 2.5, false) . '>2.5em</option>';
+		$html .= '<option value="2.6" ' . selected( $options['checkout_fontsize'] , 2.6, false) . '>2.6em</option>';
+		$html .= '<option value="2.7" ' . selected( $options['checkout_fontsize'] , 2.7, false) . '>2.7em</option>';
+		$html .= '<option value="2.8" ' . selected( $options['checkout_fontsize'] , 2.8, false) . '>2.8em</option>';
+		$html .= '<option value="2.9" ' . selected( $options['checkout_fontsize'] , 2.9, false) . '>2.9em</option>';	
 		$html .= '<option value="3" ' . selected( $options['checkout_fontsize'] , 3, false) . '>3em</option>';	
 		$html .= '<option value="3.5" ' . selected( $options['checkout_fontsize'] , 3.5, false) . '>3.5em</option>';	
 		$html .= '<option value="4" ' . selected( $options['checkout_fontsize'] , 4, false) . '>4em</option>';	
@@ -988,8 +1036,10 @@ class ClimaticCo_Admin_Settings {
 		$html .= '<select class="message-selection" id="thankyou_message" name="wppb_demo_display_options[thankyou_message]" style="width: 100%;height: 38px;background-color: #ccc; max-width: 100%;">';
 		
 		if(!empty($all_options)){
-			foreach($all_options as $all_option){				
-				$html .= '<option value="'.$all_option['MessageId'].'"' . selected( $options['thankyou_message'] , $all_option['MessageId'], false) . '>' . __( $all_option['translations'][0]['content'], 'wppb-demo-plugin' ) . '</option>';
+			foreach($all_options as $key => $all_option){	
+				if (is_numeric($key)) {
+					$html .= '<option value="'.$all_option['MessageId'].'"' . selected( $options['thankyou_message'] , $all_option['MessageId'], false) . '>' . __( $all_option['translations'][0]['content'], 'wppb-demo-plugin' ) . '</option>';
+				}			
 			}
 		}
 		
@@ -998,7 +1048,7 @@ class ClimaticCo_Admin_Settings {
 		$html .= '</div>';
 		$html .= '<div class="tab_title" id="thankyou_tab">Configuración avanzada <i class="fa fa-chevron-down" aria-hidden="true"></i></div>';
 		$html .= '<div class="tab_title_content" id="thankyou_tab_content">';
-		$display_none = 'display:none1;';
+		$display_none = 'display:block;';
 		if($options['thankyou_message'] !=''){			
 			$display_none = 'display:block;';
 		}
@@ -1008,21 +1058,37 @@ class ClimaticCo_Admin_Settings {
 		$html .= '<option value="center" ' . selected( $options['thankyou_alignment'] , 'center', false) . '>Alineado al centro</option>';
 		$html .= '<option value="right" ' . selected( $options['thankyou_alignment'] , 'right', false) . '>Alineado a la derecha</option>';		
 		$html .= '</select>';
-		$display_none = 'display:none1;';
+		$display_none = 'display:block;';
 		if($options['thankyou_message'] !=''){			
 			$display_none = 'display:block;';
 		}
 		$html .= '<select id="thankyou_fontsize" name="wppb_demo_display_options[thankyou_fontsize]" style="width: 360px;max-width: 100%;'.$display_none.'">';
 		$html .= '<option value="">' . __( 'Seleccionar tamaño de fuente', 'wppb-demo-plugin' ) . '</option>';
-		$html .= '<option value="1" ' . selected( $options['checkout_fontsize'] , 1, false) . '>1em</option>';	
-		$html .= '<option value="1.5" ' . selected( $options['checkout_fontsize'] , 1.5, false) . '>1.5em</option>';	
-		$html .= '<option value="2" ' . selected( $options['checkout_fontsize'] , 2, false) . '>2em</option>';	
-		$html .= '<option value="2.5" ' . selected( $options['checkout_fontsize'] , 2.5, false) . '>2.5em</option>';	
-		$html .= '<option value="3" ' . selected( $options['checkout_fontsize'] , 3, false) . '>3em</option>';	
-		$html .= '<option value="3.5" ' . selected( $options['checkout_fontsize'] , 3.5, false) . '>3.5em</option>';	
-		$html .= '<option value="4" ' . selected( $options['checkout_fontsize'] , 4, false) . '>4em</option>';	
-		$html .= '<option value="4.5" ' . selected( $options['checkout_fontsize'] , 4.5, false) . '>4.5em</option>';	
-		$html .= '<option value="5" ' . selected( $options['checkout_fontsize'] , 5, false) . '>5em</option>';		
+		$html .= '<option value="1" ' . selected( $options['thankyou_fontsize'] , 1, false) . '>1em</option>';
+		$html .= '<option value="1.1" ' . selected( $options['thankyou_fontsize'] , 1.1, false) . '>1.1em</option>';
+		$html .= '<option value="1.2" ' . selected( $options['thankyou_fontsize'] , 1.2, false) . '>1.2em</option>';
+		$html .= '<option value="1.3" ' . selected( $options['thankyou_fontsize'] , 1.3, false) . '>1.3em</option>';
+		$html .= '<option value="1.4" ' . selected( $options['thankyou_fontsize'] , 1.4, false) . '>1.4em</option>';	
+		$html .= '<option value="1.5" ' . selected( $options['thankyou_fontsize'] , 1.5, false) . '>1.5em</option>';
+		$html .= '<option value="1.6" ' . selected( $options['thankyou_fontsize'] , 1.6, false) . '>1.6em</option>';
+		$html .= '<option value="1.7" ' . selected( $options['thankyou_fontsize'] , 1.7, false) . '>1.7em</option>';
+		$html .= '<option value="1.8" ' . selected( $options['thankyou_fontsize'] , 1.8, false) . '>1.8em</option>';
+		$html .= '<option value="1.9" ' . selected( $options['thankyou_fontsize'] , 1.9, false) . '>1.9em</option>';	
+		$html .= '<option value="2" ' . selected( $options['thankyou_fontsize'] , 2, false) . '>2em</option>';
+		$html .= '<option value="2.1" ' . selected( $options['thankyou_fontsize'] , 2.1, false) . '>2.1em</option>';
+		$html .= '<option value="2.2" ' . selected( $options['thankyou_fontsize'] , 2.2, false) . '>2.2em</option>';
+		$html .= '<option value="2.3" ' . selected( $options['thankyou_fontsize'] , 2.3, false) . '>2.3em</option>';
+		$html .= '<option value="2.4" ' . selected( $options['thankyou_fontsize'] , 2.4, false) . '>2.4em</option>';	
+		$html .= '<option value="2.5" ' . selected( $options['thankyou_fontsize'] , 2.5, false) . '>2.5em</option>';
+		$html .= '<option value="2.6" ' . selected( $options['thankyou_fontsize'] , 2.6, false) . '>2.6em</option>';
+		$html .= '<option value="2.7" ' . selected( $options['thankyou_fontsize'] , 2.7, false) . '>2.7em</option>';
+		$html .= '<option value="2.8" ' . selected( $options['thankyou_fontsize'] , 2.8, false) . '>2.8em</option>';
+		$html .= '<option value="2.9" ' . selected( $options['thankyou_fontsize'] , 2.9, false) . '>2.9em</option>';	
+		$html .= '<option value="3" ' . selected( $options['thankyou_fontsize'] , 3, false) . '>3em</option>';	
+		$html .= '<option value="3.5" ' . selected( $options['thankyou_fontsize'] , 3.5, false) . '>3.5em</option>';	
+		$html .= '<option value="4" ' . selected( $options['thankyou_fontsize'] , 4, false) . '>4em</option>';	
+		$html .= '<option value="4.5" ' . selected( $options['thankyou_fontsize'] , 4.5, false) . '>4.5em</option>';	
+		$html .= '<option value="5" ' . selected( $options['thankyou_fontsize'] , 5, false) . '>5em</option>';		
 		$html .= '</select>';
 
 		$url = '';
