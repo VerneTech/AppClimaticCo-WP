@@ -646,11 +646,11 @@ function woocommerce_output_all_notices1() {
 	$options = get_option( 'wppb_demo_display_options' );
 
 	$authentication = get_option('wppb_demo_authentication_options');
-
+	
 	if (isset($authentication['apikey'])) {
 		if(isset($options['cart_fontsize'])){
 			if($options['cart_fontsize'] != ''){
-				$options['cart_fontsize'] = $options['prod_fontsize'];	
+				//$options['cart_fontsize'] = $options['prod_fontsize'];	
 			}else{
 				$options['cart_fontsize'] = '1';
 			}
@@ -658,7 +658,7 @@ function woocommerce_output_all_notices1() {
 			$options['cart_fontsize'] = '1';
 		}
 		$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
-		$background_color = $options['product_color'];
+		$background_color = $options['cart_color'];
 		$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-light.png';
 		if(isset($options['black_background'])){
 			if($options['black_background'] == 1){
@@ -717,7 +717,7 @@ function woocommerce_before_checkout_form_before() {
 	if (isset($authentication['apikey'])) {
 		if(isset($options['checkout_fontsize'])){
 			if($options['checkout_fontsize'] != ''){
-				$options['checkout_fontsize'] = $options['prod_fontsize'];	
+				//$options['checkout_fontsize'] = $options['prod_fontsize'];	
 			}else{
 				$options['checkout_fontsize'] = '1';
 			}
@@ -725,7 +725,7 @@ function woocommerce_before_checkout_form_before() {
 			$options['checkout_fontsize'] = '1';
 		}
 		$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
-		$background_color = $options['product_color'];
+		$background_color = $options['checkout_color'];
 		$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-light.png';
 		if(isset($options['black_background'])){
 			if($options['black_background'] == 1){
@@ -775,7 +775,7 @@ function woo_change_order_received_text( $str, $order ) {
 
 	if (isset($authentication['apikey'])) {
 		$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
-			$background_color = $options['product_color'];
+			$background_color = $options['thankyou_color'];
 			$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-light.png';
 			if(isset($options['black_background'])){
 				if($options['black_background'] == 1){
@@ -813,8 +813,12 @@ function woo_change_order_received_text( $str, $order ) {
 			//var_dump($link);
 			//$allmsg = '<span class="tooltip"><img src="'.$black_background.'"></span> <span class="message-content" style="margin-top: 2px;">'.$msg.' <a href="'.$link.'" target="_blank" style="display: inline-flex;align-items: flex-start;padding: 0; margin-top: -4;">Más información</a></span>';
 			//var_dump($session['thank-you']['link']);
+			$full_link = '';
+			if ($link != '') {
+				$full_link = '<a href="'.$link.'" target="_blank" style="display: inline-flex;align-items: flex-start;padding: 0; margin-top: -4; margin-left: 5px">Más información</a>';
+			}
 			$new_str = '<div class="alertbox alertbox-'.$options['thankyou_alignment'].'" style="background-color:'.$background_color.';text-align: '.$options['thankyou_alignment'].';font-size:'.$options['thankyou_fontsize'].'em;">
-			'.' <span class="message-content" style="margin-top: 2px;"><span class="tooltip" style="margin-right: 5px;"><img src="'.$black_background.'"></span>'.$msg.' <a href="'.$link.'" target="_blank" style="display: inline-flex;align-items: flex-start;padding: 0; margin-top: -4;">Más información</a><span class="closebtn tooltip" style="margin-top: 4px;"><i class="fa fa-info-circle" aria-hidden="true"></i> <span style="background-color:'.$background_color.';" class="tooltiptext tooltip-left">'.$tooltip.'</span></span> </span>'.'
+			'.' <span class="message-content" style="margin-top: 2px;"><span class="tooltip" style="margin-right: 5px;"><img src="'.$black_background.'"></span>'.$msg.$full_link.'<span class="closebtn tooltip" style="margin-top: 4px;"><i class="fa fa-info-circle" aria-hidden="true"></i> <span style="background-color:'.$background_color.';" class="tooltiptext tooltip-left">'.$tooltip.'</span></span> </span>'.'
 			</div>';
 	}
 
