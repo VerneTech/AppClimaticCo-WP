@@ -406,15 +406,27 @@ function detect_lang(){
 	
 }
 
+/*
+Most of WP is loaded at this stage, and the user is authenticated. 
+WP continues to load on the ‘init’ hook that follows (e.g. widgets), 
+and many plugins instantiate themselves on it for all sorts of reasons (e.g. they need a user, a taxonomy, etc.).
+If you wish to plug an action once WP is loaded, use the ‘wp_loaded’ hook below.
+*/
 add_action( 'init', 'createsession' );
 function createsession() {
 	
 	$session = array();
-	
+	$lang = detect_lang();
+		
+
 	if(!isset($_SESSION['msgs'])){
-		$lang = detect_lang();
+		//$lang = detect_lang();
 		$page = 'product';
-		$all_options1 = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
+		$all_options1 = [];
+
+		if(trim($lang)<>"") {
+			$all_options1 = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
+		}
 		
 		if (count($all_options1) == 0) {
 			$lang = 'spa';
@@ -429,8 +441,11 @@ function createsession() {
 		
 		
 		$page = 'cart';
-		$lang = detect_lang();
-		$all_options2 = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
+		$all_options2 = [];
+		//$lang = detect_lang();
+		if(trim($lang)<>"") {
+			$all_options2 = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
+		}
 
 		if (count($all_options2) == 0) {
 			$lang = 'spa';
@@ -443,9 +458,13 @@ function createsession() {
 			}
 		}
 		
+
 		$page = 'check-out';
-		$lang = detect_lang();
-		$all_options3 = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
+		$all_options3 = [];
+		//$lang = detect_lang();
+		if(trim($lang)<>"") {
+			$all_options3 = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
+		}
 
 		if (count($all_options3) == 0) {
 			$lang = 'spa';
@@ -459,9 +478,12 @@ function createsession() {
 		}
 		
 		$page = 'thank-you';
-		$lang = detect_lang();
-		$all_options4 = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
-
+		$all_options4 = [];
+		//$lang = detect_lang();
+		if(trim($lang)<>"") {	
+			$all_options4 = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
+		}
+		
 		if (count($all_options4) == 0) {
 			$lang = 'spa';
 			$all_options4 = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
@@ -964,15 +986,16 @@ function mysite_woocommerce_order_status_completed( $order_id ) {
 			$_url = http_build_query($data);
 			$url = 'https://appv2.climaticco.com/api/v1/ecommerce/order/new?'.$_url;
 			
+			/*
 			$to = "lopezbonaque@gmail.com"; 
 			$subject = "My subject 1";
 			echo $txt = print_r($data,true). ' | ==== | '.$url;
 			$headers = "From: soporte@sevensystem.es" . "\r\n";
-
 			mail($to,$subject,$txt,$headers); 
+			*/
 
+			/*
 			if (!function_exists('write_log')) {
-
 				function write_log($log) {
 					if (true === WP_DEBUG) {
 						if (is_array($log) || is_object($log)) {
@@ -982,11 +1005,10 @@ function mysite_woocommerce_order_status_completed( $order_id ) {
 						}
 					}
 				}
-			
 			}
-			
 			write_log($order_id.': '.$txt);
-			
+			*/
+
 			update_post_meta( $order_id, 'order_api_send_data', $txt );
 			
 			$curl = curl_init();
