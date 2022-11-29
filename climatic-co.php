@@ -444,6 +444,8 @@ function getMessage($lang, $page){
 	*/
 	$allOptions = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
 	$messages = [];
+	var_dump($allOptions);
+	die;
 	if(!empty($allOptions)){
 		foreach($allOptions as $msgOption){
 			$tooltip = $msgOption['translation'][0]['tooltip'];
