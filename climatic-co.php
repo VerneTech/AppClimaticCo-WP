@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              https://www.climaticco.com/
- * @since             1.0.1
+ * @since             1.0.2
  * @package           climatic_co_Plugin
  *
  * @wordpress-plugin
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
