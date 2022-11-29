@@ -706,6 +706,9 @@ function woocommerce_output_all_notices1() {
 		}
 		$lang = detect_lang();
 		$messageData = getMessage($lang,'cart');
+		var_dump($messageData);
+		var_dump($options);
+		die;
 		if(isset($messageData[$options['cart_message']])){
 			$message = $messageData[$options['cart_message']];
 		}else{
