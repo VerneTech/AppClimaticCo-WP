@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              https://www.climaticco.com/
- * @since             1.0.5
+ * @since             1.0.6
  * @package           climatic_co_Plugin
  *
  * @wordpress-plugin
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           1.0.5
+ * Version:           1.0.6
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
@@ -450,10 +450,11 @@ function getMessage($lang, $page){
 			$tooltip = $msgOption['translations'][0]['tooltip'];
 			$msg = $msgOption['translations'][0]['content'];
 			$messages[$msgOption['MessageId']] = array('tooltip' => $tooltip, 'content' => $msg);
-			if($page==='thank-you')
-			{
-				$messages['link']=$msgOption['thankyou-link'];
-			}
+			
+		}
+		if($page==='thank-you')
+		{
+			$messages['link']=$allOptions['thankyou-link'];
 		}
 	}
 	return $messages;
