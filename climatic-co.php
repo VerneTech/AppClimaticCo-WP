@@ -454,7 +454,7 @@ function getMessage($lang, $page){
 		}
 		if($page==='thank-you')
 		{
-			$messages['link']=$allOptions['thankyou-link'];
+			$messages['thankyou_link']=$allOptions['thankyou-link'];
 		}
 	}
 	return $messages;
@@ -850,7 +850,7 @@ function woo_change_order_received_text( $str, $order ) {
 			}
 			$tooltip = $message['tooltip'];
 			$msg = $message['content'];
-			$link = $message['link'];
+			$link = $messageData['thankyou_link'];
 			
 			// $session = $_SESSION['msgs'];
 			// $tooltip = '';
