@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              https://www.climaticco.com/
- * @since             1.0.0
+ * @since             1.0.1
  * @package           climatic_co_Plugin
  *
  * @wordpress-plugin
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 require 'plugin-update-checker-4.11/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-	'https://github.com/ClimaticCo/wordpress-plugin',
+	'https://github.com/VerneTech/AppClimaticCo-WP',
 	__FILE__,
 	'climatic-co'
 );
