@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              https://www.climaticco.com/
- * @since             1.0.4
+ * @since             1.0.5
  * @package           climatic_co_Plugin
  *
  * @wordpress-plugin
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           1.0.4
+ * Version:           1.0.5
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
@@ -444,12 +444,11 @@ function getMessage($lang, $page){
 	*/
 	$allOptions = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
 	$messages = [];
-	var_dump($allOptions);
-	die;
+	
 	if(!empty($allOptions)){
 		foreach($allOptions as $msgOption){
-			$tooltip = $msgOption['translation'][0]['tooltip'];
-			$msg = $msgOption['translation'][0]['content'];
+			$tooltip = $msgOption['translations'][0]['tooltip'];
+			$msg = $msgOption['translations'][0]['content'];
 			$messages[$msgOption['MessageId']] = array('tooltip' => $tooltip, 'content' => $msg);
 			if($page==='thank-you')
 			{
@@ -708,9 +707,7 @@ function woocommerce_output_all_notices1() {
 		}
 		$lang = detect_lang();
 		$messageData = getMessage($lang,'cart');
-		var_dump($messageData);
-		var_dump($options);
-		die;
+		
 		if(isset($messageData[$options['cart_message']])){
 			$message = $messageData[$options['cart_message']];
 		}else{
