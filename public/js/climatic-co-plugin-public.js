@@ -30,7 +30,7 @@
 	 */
 
 	 $(document).scroll(function(){
-		if (Math.floor($(this).scrollTop() + $(window).height()) == Math.floor($(document).height())) {
+		if (Math.floor($(this).scrollTop() + $(window).height()) >= Math.floor($(document).height())) {
 			$('body .stumpwrap').css({
 				'opacity': '1'
 			})
