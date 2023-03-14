@@ -32,12 +32,12 @@
 		
 		// Get all elements with class="closebtn"
 		var closediv = document.getElementById("crossitem_added");
-		var crossitem = document.getElementById("crossitem");
+		//var crossitem = document.getElementById("crossitem");
 		var i;
 		
-		crossitem.onclick = function(){
-			setTimeout(function(){ closediv.style.display = "none"; }, 100);
-		}
+		//crossitem.onclick = function(){
+		//	setTimeout(function(){ closediv.style.display = "none"; }, 100);
+		//}
 
 		// Loop through all close buttons
 		/*for (i = 0; i < close.length; i++) {

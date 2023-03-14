@@ -570,7 +570,6 @@ function wp_kama_woocommerce_review_order_after_submit1(){
 			<div id="crossitem_added" class="stumpwrap '.$stump_position.'">
 				<div class="tooltip">
 					<img src="/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-stamp-dark.png"> 
-					<span id="crossitem">&times;</span>
 				</div>
 			</div> <div style="clear:both;"></div>';
 		}else{
@@ -578,7 +577,6 @@ function wp_kama_woocommerce_review_order_after_submit1(){
 			<div id="crossitem_added" class="stumpwrap '.$stump_position.'">
 				<div class="tooltip">
 					<img src="/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-stamp.png"> 
-					<span id="crossitem">&times;</span>
 				</div>
 			</div> <div style="clear:both;"></div>';
 		}
