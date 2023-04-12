@@ -84,17 +84,17 @@ body .stumpwrap {
     min-width: 30px !important;
 }
 
-.tooltip {
+.tooltip_climaticco {
   position: relative;
   display: inline-block;
   margin-right: 5px;
 }
 
-.tooltip img {
+.tooltip_climaticco img {
   margin-bottom: -2px !important;
 }
 
-.tooltip .tooltiptext {
+.tooltip_climaticco .tooltiptext {
   visibility: hidden;
   width: 200px;
   height: auto;
@@ -105,12 +105,12 @@ body .stumpwrap {
   padding: 10px;
   font-size: 15px;
   line-height: 16px;
-  /* Position the tooltip */
+  /* Position the tooltip_climaticco */
   position: absolute;
   z-index: 1;
 }
 
-.tooltip:hover .tooltiptext {
+.tooltip_climaticco:hover .tooltiptext {
   visibility: visible;
 }
 .tooltip-left {
@@ -148,10 +148,10 @@ body{ position: relative;}
 .stumpwrap.center { 
   justify-content: center;
 }
-.alertbox-right span.closebtn.tooltip {
+.alertbox-right span.closebtn.tooltip_climaticco {
     margin-right: 0;
     margin-left: 10px;
 }
-.alertbox-right span.tooltip img {
+.alertbox-right span.tooltip_climaticco img {
     margin-left: 15px;
 }

@@ -16,7 +16,7 @@
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           1.0.12
+ * Version:           1.0.13
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
@@ -568,14 +568,14 @@ function wp_kama_woocommerce_review_order_after_submit1(){
 			# code...
 			echo '<div style="clear:both;"></div>
 			<div id="crossitem_added" class="stumpwrap '.$stump_position.'">
-				<div class="tooltip">
+				<div class="tooltip_climaticco">
 					<img src="/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-stamp-dark.png"> 
 				</div>
 			</div> <div style="clear:both;"></div>';
 		}else{
 			echo '<div style="clear:both;"></div>
 			<div id="crossitem_added" class="stumpwrap '.$stump_position.'">
-				<div class="tooltip">
+				<div class="tooltip_climaticco">
 					<img src="/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-stamp.png"> 
 				</div>
 			</div> <div style="clear:both;"></div>';
@@ -658,7 +658,7 @@ function custom_action_after_single_product_title() {
 			
 			
 			$allmsg = '<div class="alertbox alertbox-'.$options['prod_alignment'].'" style="background-color:'.$background_color.';font-size:'.$options['prod_fontsize'].'em;"> 
-			'.'<span class="message-content"><span class="tooltip"><img src="'.$black_background.'"></span>'.$msg.'<span class="closebtn tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span></span>'.'
+			'.'<span class="message-content"><span class="tooltip_climaticco"><img src="'.$black_background.'"></span>'.$msg.'<span class="closebtn tooltip_climaticco"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span></span>'.'
 		</div>';
 			
 			
@@ -714,33 +714,9 @@ function woocommerce_output_all_notices1() {
 		}
 		$tooltip = $message['tooltip'];
 		$msg = $message['content'];
-		// $session = $_SESSION['msgs'];
-		// $tooltip = '';
-		// if(isset($_SESSION['msgs']['cart'][$options['cart_message']])){				
-		// 	$tooltip = $session['cart'][$options['cart_message']]['tooltip'];
-		// }else{
-		// 	if(!empty($session['cart'])){
-		// 		foreach($session['cart'] as $ss){								
-		// 			$tooltip = $ss['tooltip'];
-		// 			break;
-		// 		}
-		// 	}
-		// }
-		// $msg = '';
-		// if(isset($_SESSION['msgs']['cart'][$options['cart_message']])){	
-		// 	$msg = $session['cart'][$options['cart_message']]['content'];
-		// }else{
-		// 	if(!empty($session['cart'])){
-		// 		foreach($session['cart'] as $ss){								
-		// 			$msg = $ss['content'];
-		// 			break;
-		// 		}
-		// 	}
-		// }
-		//$allmsg = '<span class="tooltip"><img src="'.$black_background.'"></span> <span class="message-content">'.$msg.'</span>';
-		
+				
 		echo '<div class="alertbox alertbox-'.$options['cart_alignment'].'" style="background-color:'.$background_color.';text-align: '.$options['cart_alignment'].';font-size:'.$options['cart_fontsize'].'em;">
-			'.' <span class="message-content"><span class="tooltip"><img src="'.$black_background.'"></span>'.$msg.'<span class="closebtn tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span></span>'.'
+			'.' <span class="message-content"><span class="tooltip_climaticco"><img src="'.$black_background.'"></span>'.$msg.'<span class="closebtn tooltip_climaticco"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span></span>'.'
 			 
 		</div>';
 	}
@@ -817,7 +793,7 @@ function woocommerce_before_checkout_form_before() {
 		//$allmsg = '<span class="tooltip"><img src="'.$black_background.'"></span> <span class="message-content">'.$msg.'</span>';
 		
 		echo '<div class="alertbox alertbox-'.$options['checkout_alignment'].'" style="clear: both; background-color:'.$background_color.';text-align: '.$options['checkout_alignment'].';font-size:'.$options['checkout_fontsize'].'em;">
-			'.' <span class="message-content"><span class="tooltip"><img src="'.$black_background.'"></span>'.$msg.'<span class="closebtn tooltip"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span> </span>'.'
+			'.' <span class="message-content"><span class="tooltip_climaticco"><img src="'.$black_background.'"></span>'.$msg.'<span class="closebtn tooltip_climaticco"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span> </span>'.'
 		</div>';
 	}
 }
@@ -883,7 +859,7 @@ function woo_change_order_received_text( $str, $order ) {
 				$full_link = '<a href="'.$link.'" target="_blank" style="display: inline-flex;align-items: flex-start;padding: 0; margin-top: -4; margin-left: 5px">Más información</a>';
 			}
 			$new_str = '<div class="alertbox alertbox-'.$options['thankyou_alignment'].'" style="background-color:'.$background_color.';text-align: '.$options['thankyou_alignment'].';font-size:'.$options['thankyou_fontsize'].'em;">
-			'.' <span class="message-content" style="margin-top: 2px;"><span class="tooltip" style="margin-right: 5px;"><img src="'.$black_background.'"></span>'.$msg.$full_link.'<span class="closebtn tooltip" style="margin-top: 4px;"><i class="fa fa-info-circle" aria-hidden="true"></i> <span style="background-color:'.$background_color.';" class="tooltiptext tooltip-left">'.$tooltip.'</span></span> </span>'.'
+			'.' <span class="message-content" style="margin-top: 2px;"><span class="tooltip_climaticco" style="margin-right: 5px;"><img src="'.$black_background.'"></span>'.$msg.$full_link.'<span class="closebtn tooltip_climaticco" style="margin-top: 4px;"><i class="fa fa-info-circle" aria-hidden="true"></i> <span style="background-color:'.$background_color.';" class="tooltiptext tooltip-left">'.$tooltip.'</span></span> </span>'.'
 			</div>';
 	}
 
