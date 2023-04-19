@@ -16,7 +16,7 @@
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           1.0.23
+ * Version:           1.0.24
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
@@ -1001,8 +1001,8 @@ function mysite_woocommerce_order_status_completed( $order_id ) {
 				$store_raw_country = get_option( 'woocommerce_default_country' );
 				$split_country = explode( ":", $store_raw_country );
 				$store_country = $split_country[0];
-				$state_code = WC()->countries->get_base_state();
-				$store_state   = WC()->countries->get_state($store_country, $state_code ); //provincia de origen		
+				$store_state   = $split_country[1]; //provincia de origen	
+				//$store_state   = WC()->countries->get_base_state(); //provincia de origen		
 			
 			
 			$store_postcode    	= get_option( 'woocommerce_store_postcode' );	
