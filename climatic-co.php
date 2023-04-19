@@ -16,7 +16,7 @@
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           1.0.13
+ * Version:           1.0.14
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
@@ -986,20 +986,17 @@ function mysite_woocommerce_order_status_completed( $order_id ) {
 				
 			}
 			
-			$first_name = $order->get_shipping_first_name();
-			$last_name = $order->get_shipping_last_name();
-			$_address_1 = $order->get_shipping_address_1();
-			$_city = $order->get_shipping_city();
-			$_state = 'Madrid';
-			$_postcode = $order->get_shipping_postcode();
-			$_country = $order->get_shipping_country();
-			
-			
-			$store_address     = get_option( 'woocommerce_store_address' );
-			$store_address_2   = get_option( 'woocommerce_store_address_2' );
-			$store_city        = get_option( 'woocommerce_store_city' );
-			$store_postcode    = get_option( 'woocommerce_store_postcode' );
-			$weight_unit = get_option('woocommerce_weight_unit');
+			//$first_name = $order->get_shipping_first_name();
+			//$last_name = $order->get_shipping_last_name();
+			$_destination_address 	= $order->get_shipping_address_1();
+			$_destination_city 		= $order->get_shipping_city();
+			$_destination_state 	= $order->get_shipping_state();
+			$_destination_postcode	= $order->get_shipping_postcode();
+			$_destination_country 	= $order->get_shipping_country();
+			$store_address     	= get_option( 'woocommerce_store_address' );
+			$store_city        	= get_option( 'woocommerce_store_city' );
+			$store_postcode    	= get_option( 'woocommerce_store_postcode' );
+			$weight_unit 		= get_option('woocommerce_weight_unit');
 
 			// The country/state
 			$store_raw_country = get_option( 'woocommerce_default_country' );
@@ -1009,24 +1006,23 @@ function mysite_woocommerce_order_status_completed( $order_id ) {
 
 			// Country and state separated:
 			$store_country = $split_country[0];
-			//$store_state   = $split_country[1];
-			$store_state   = 'Murcia';
+			$store_state   = $split_country[1];
 			
 			$data = array(
 				'date' => date('d/m/Y',strtotime($order->get_date_created())),
-				'destinationAddress' => $_address_1,
-				'destinationMunicipality' => $_city,
-				'destinationPostalCode' => $store_postcode,
-				'destinationProvince' => $_state,
-				'destinationCountry' => $_country,
-				'originAddress' => $store_address,
-				'originMunicipality' => $store_city,
-				'originPostalCode' => $store_postcode,
-				'originProvince' => $store_state,
-				'originCountry' => $split_country[0],
-				'numOrder' => $order_id,
-				'weight' => $total_weight,
-				'weightUnit' => strtoupper($weight_unit)
+				'destinationAddress' 		=> $_destination_address,
+				'destinationMunicipality' 	=> $_destination_city,
+				'destinationProvince' 		=> $_destination_state,
+				'destinationPostalCode' 	=> $_destination_postcode,
+				'destinationCountry' 		=> $_destination_country,
+				'originAddress' 		=> $store_address,
+				'originMunicipality' 	=> $store_city,
+				'originProvince' 		=> $store_state,
+				'originPostalCode' 		=> $store_postcode,
+				'originCountry' 		=> $store_country,
+				'numOrder' 			=> $order_id,
+				'weight' 			=> $total_weight,
+				'weightUnit' 		=> strtoupper($weight_unit)
 			);
 			$_url = http_build_query($data);
 			$url = 'https://appv2.climaticco.com/api/v1/ecommerce/order/new?'.$_url;
