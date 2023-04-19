@@ -16,7 +16,7 @@
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           1.0.20
+ * Version:           1.0.21
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
@@ -995,19 +995,19 @@ function mysite_woocommerce_order_status_completed( $order_id ) {
 			$_destination_country 	= $order->get_shipping_country();
 			$store_address     	= get_option( 'woocommerce_store_address' );
 			$store_city        	= get_option( 'woocommerce_store_city' );	//localidad de origen
-			$store_state   		= get_option( 'woocommerce_store_state' ); 	//provincia de origen
+			
+			//$store_state   		= get_option( 'woocommerce_store_state' ); 	//provincia de origen
+				// The country/state
+				$store_raw_country = get_option( 'woocommerce_default_country' );
+				$split_country = explode( ":", $store_raw_country );
+				$store_country = $split_country[0];
+				$store_state   = WC()->countries->get_base_state(); //provincia de origen		
+			
+			
 			$store_postcode    	= get_option( 'woocommerce_store_postcode' );	
 			$weight_unit 		= get_option('woocommerce_weight_unit');
 
-			// The country/state
-			$store_raw_country = get_option( 'woocommerce_default_country' );
-
-			// Split the country/state
-			$split_country = explode( ":", $store_raw_country );
-
-			// Country and state separated:
-			$store_country = $split_country[0];
-			//$store_state   = $split_country[1]; //provincia de origen
+				
 			
 			$data = array(
 				'date' => date('d/m/Y',strtotime($order->get_date_created())),
