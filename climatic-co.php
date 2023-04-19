@@ -16,7 +16,7 @@
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           1.0.19
+ * Version:           1.0.20
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
@@ -989,13 +989,14 @@ function mysite_woocommerce_order_status_completed( $order_id ) {
 			//$first_name = $order->get_shipping_first_name();
 			//$last_name = $order->get_shipping_last_name();
 			$_destination_address 	= $order->get_shipping_address_1();
-			$_destination_city 		= $order->get_shipping_city();
-			$_destination_state 	= $order->get_shipping_state();
+			$_destination_city 		= $order->get_shipping_city();  //localidad de destino
+			$_destination_state 	= $order->get_shipping_state(); //provincia de destino
 			$_destination_postcode	= $order->get_shipping_postcode();
 			$_destination_country 	= $order->get_shipping_country();
 			$store_address     	= get_option( 'woocommerce_store_address' );
-			$store_city        	= get_option( 'woocommerce_store_city' );
-			$store_postcode    	= get_option( 'woocommerce_store_postcode' );
+			$store_city        	= get_option( 'woocommerce_store_city' );	//localidad de origen
+			$store_state   		= get_option( 'woocommerce_store_state' ); 	//provincia de origen
+			$store_postcode    	= get_option( 'woocommerce_store_postcode' );	
 			$weight_unit 		= get_option('woocommerce_weight_unit');
 
 			// The country/state
@@ -1006,7 +1007,7 @@ function mysite_woocommerce_order_status_completed( $order_id ) {
 
 			// Country and state separated:
 			$store_country = $split_country[0];
-			$store_state   = $split_country[1];
+			//$store_state   = $split_country[1]; //provincia de origen
 			
 			$data = array(
 				'date' => date('d/m/Y',strtotime($order->get_date_created())),
