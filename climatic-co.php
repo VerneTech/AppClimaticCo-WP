@@ -16,7 +16,7 @@
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           1.0.24
+ * Version:           1.0.25
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
@@ -55,6 +55,7 @@ function api_callback($url, $apikey = '') {
 		CURLOPT_MAXREDIRS => 10,
 		CURLOPT_TIMEOUT => 0,
 		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_SSL_VERIFYPEER => false,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => 'GET',
 		CURLOPT_HTTPHEADER => array(
@@ -950,6 +951,7 @@ function my_init_new(){
 				CURLOPT_MAXREDIRS => 10,
 				CURLOPT_TIMEOUT => 0,
 				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_SSL_VERIFYPEER => false,
 				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 				CURLOPT_CUSTOMREQUEST => 'POST',
 				CURLOPT_POSTFIELDS => json_encode($data),
@@ -1069,6 +1071,7 @@ function mysite_woocommerce_order_status_completed( $order_id ) {
 				CURLOPT_TIMEOUT => 0,
 				CURLOPT_FOLLOWLOCATION => true,
 				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_SSL_VERIFYPEER => false,
 				CURLOPT_CUSTOMREQUEST => 'POST',
 				CURLOPT_POSTFIELDS => json_encode($data),
 				CURLOPT_HTTPHEADER => array(
