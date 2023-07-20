@@ -16,7 +16,7 @@
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           1.0.25
+ * Version:           1.0.26
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
@@ -412,52 +412,22 @@ function detect_lang(){
 }
 
 function getMessage($lang, $page){
-	/*
-
-	$session = $_SESSION['msgs'];
-			$tooltip = '';
-			
-			if(isset($_SESSION['msgs']['product'][$options['product_message']])){				
-				$tooltip = $session['product'][$options['product_message']]['tooltip'];
-			}else{
-				if(!empty($session['product'])){
-					foreach($session['product'] as $ss){								
-						$tooltip = $ss['tooltip'];
-						break;
-					}
-				}
-			}
-			$msg = '';
-			$messagesOptions = getMessage($lang, 'product');
-			if(isset($messagesOptions[$options['product_message']])){
-				$msg = $messagesOptions[$options['product_message']];
-			if(isset($_SESSION['msgs']['product'][$options['product_message']])){	
-				$msg = $session['product'][$options['product_message']]['content'];
-			}else{
-				if(!empty($session['product'])){
-					foreach($session['product'] as $ss){								
-						$msg = $ss['content'];
-						break;
-					}
-				}
-			}
-
-	*/
+	
 	$allOptions = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
 	$messages = [];
-	
+
 	if(!empty($allOptions)){
-		foreach($allOptions as $msgOption){
-			$tooltip = $msgOption['translations'][0]['tooltip'];
-			$msg = $msgOption['translations'][0]['content'];
-			$messages[$msgOption['MessageId']] = array('tooltip' => $tooltip, 'content' => $msg);
-			
-		}
-		if($page==='thank-you')
-		{
-			$messages['thankyou_link']=$allOptions['thankyou-link'];
+		foreach($allOptions as $key=>$msgOption){	
+			if (is_array($msgOption)) {
+				$tooltip = $msgOption['translations'][0]['tooltip'];
+				$msg = $msgOption['translations'][0]['content'];
+				$messages[$msgOption['MessageId']] = array('tooltip' => $tooltip, 'content' => $msg);
+			} elseif ($page==='thank-you') {
+				$messages['thankyou_link']=$allOptions['thankyou-link'];
+			}
 		}
 	}
+
 	return $messages;
 }
 
