@@ -1,0 +1,9 @@
+En este archivo apuntaremos los cambios realizados en el Plugin
+----------------------------------------------------------------
+versión 1.0.26 
+- arreglamos warnings que se estaban dando en el front de los clientes, porque al recuperar los mensajes de tipo "thank-you"
+    se estaba recorriendo el array que recibimos de la API de forma incorrecta.
+
+
+versión 1.0.27 
+- arreglamos warning que sigue dando porque no había solucionado todos los accesos al array de tipo "thank-you" 
