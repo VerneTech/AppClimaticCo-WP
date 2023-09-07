@@ -7,3 +7,8 @@ versión 1.0.26
 
 versión 1.0.27 
 - arreglamos warning que sigue dando porque no había solucionado todos los accesos al array de tipo "thank-you" 
+
+versión 1.0.28
+- guardamos los mensajes por defecto al instalar el Plugin desde el zip
+- aumentamos los tamaños de fuentes disponibles en los desplegables de los mensajes
+- subrayamos "Más información." y le ponemos un punto final

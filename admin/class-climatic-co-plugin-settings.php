@@ -60,29 +60,48 @@ class ClimaticCo_Admin_Settings {
 	 * @return array
 	 */
 	public function default_display_options() {
+		
+		$lang = detect_lang();
+		
+		$page = 'product';
+		$all_options1 = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
+		$id_product_message = (!empty($all_options1)) ? $all_options1[0]["MessageId"] : '' ; 
+		
+		
+		$page = 'cart';
+		$all_options2 = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
+		$id_cart_message = (!empty($all_options2)) ? $all_options2[0]["MessageId"] : '' ;
+		
+		$page = 'check-out';
+		$all_options3 = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
+		$id_checkout_message = (!empty($all_options3)) ? $all_options3[0]["MessageId"] : '' ;
+			
+		$page = 'thank-you';
+		$all_options4 = api_callback('https://appv2.climaticco.com/api/v1/messages/ecommerce/'.$lang.'/'.$page);
+		$id_thankyou_message = (!empty($all_options4)) ? $all_options4[0]["MessageId"] : '' ;
 
 		$defaults = array (
 			'display_none' => '',
 			'prod_under_h1' => '',
 			'cart_under_h1' => '',
 			'checkout_under_h1' => '',
-			'stump_position' => 'left',
-			'product_message' => '',
+			'product_message' => $id_product_message,
 			'prod_alignment' => 'left',
-			'prod_fontsize' => '',
+			'prod_fontsize' => '1',
 			'product_color' => '',
-			'cart_message' => '',
+			'cart_message' => $id_cart_message,
 			'cart_alignment' => 'left',
-			'cart_fontsize' => '',
+			'cart_fontsize' => '1',
 			'cart_color' => '',
-			'checkout_message' => '',
+			'checkout_message' => $id_checkout_message,
 			'checkout_alignment' => 'left',
-			'checkout_fontsize' => '',
+			'checkout_fontsize' => '1',
 			'checkout_color' => '',
-			'thankyou_message' => '',
+			'thankyou_message' => $id_thankyou_message,
 			'thankyou_alignment' => 'left',
 			'thankyou_fontsize' => '1.2',
 			'thankyou_color' => '',
+			'stump_position' => 'center',
 		  );
 
 		return $defaults;
@@ -821,6 +840,11 @@ class ClimaticCo_Admin_Settings {
 		}
 		//var_dump($display_none);
 		$html .= '<select id="prod_fontsize" name="wppb_demo_display_options[prod_fontsize]" style="width: 360px;max-width: 100%;'.$display_none.'">';
+		$html .= '<option value="0.5" ' . selected( $options['prod_fontsize'] , 0.5, false) . '>0.5em</option>';
+		$html .= '<option value="0.6" ' . selected( $options['prod_fontsize'] , 0.6, false) . '>0.6em</option>';
+		$html .= '<option value="0.7" ' . selected( $options['prod_fontsize'] , 0.7, false) . '>0.7em</option>';
+		$html .= '<option value="0.8" ' . selected( $options['prod_fontsize'] , 0.8, false) . '>0.8em</option>';
+		$html .= '<option value="0.9" ' . selected( $options['prod_fontsize'] , 0.9, false) . '>0.9em</option>';
 		$html .= '<option value="1" ' . selected( $options['prod_fontsize'] , 1, false) . '>1em</option>';
 		$html .= '<option value="1.1" ' . selected( $options['prod_fontsize'] , 1.1, false) . '>1.1em</option>';
 		$html .= '<option value="1.2" ' . selected( $options['prod_fontsize'] , 1.2, false) . '>1.2em</option>';
@@ -903,6 +927,11 @@ class ClimaticCo_Admin_Settings {
 		}
 		$html .= '<select id="cart_fontsize" name="wppb_demo_display_options[cart_fontsize]" style="width: 360px;max-width: 100%;'.$display_none.'">';
 		$html .= '<option value="">' . __( 'Seleccionar tamaño de fuente', 'wppb-demo-plugin' ) . '</option>';
+		$html .= '<option value="0.5" ' . selected( $options['cart_fontsize'] , 0.5, false) . '>0.5em</option>';
+		$html .= '<option value="0.6" ' . selected( $options['cart_fontsize'] , 0.6, false) . '>0.6em</option>';
+		$html .= '<option value="0.7" ' . selected( $options['cart_fontsize'] , 0.7, false) . '>0.7em</option>';
+		$html .= '<option value="0.8" ' . selected( $options['cart_fontsize'] , 0.8, false) . '>0.8em</option>';
+		$html .= '<option value="0.9" ' . selected( $options['cart_fontsize'] , 0.9, false) . '>0.9em</option>';
 		$html .= '<option value="1" ' . selected( $options['cart_fontsize'] , 1, false) . '>1em</option>';
 		$html .= '<option value="1.1" ' . selected( $options['cart_fontsize'] , 1.1, false) . '>1.1em</option>';
 		$html .= '<option value="1.2" ' . selected( $options['cart_fontsize'] , 1.2, false) . '>1.2em</option>';
@@ -984,6 +1013,11 @@ class ClimaticCo_Admin_Settings {
 		}
 		$html .= '<select id="checkout_fontsize" name="wppb_demo_display_options[checkout_fontsize]" style="width: 360px;max-width: 100%;'.$display_none.'">';
 		$html .= '<option value="">' . __( 'Seleccionar tamaño de fuente', 'wppb-demo-plugin' ) . '</option>';
+		$html .= '<option value="0.5" ' . selected( $options['checkout_fontsize'] , 0.5, false) . '>0.5em</option>';
+		$html .= '<option value="0.6" ' . selected( $options['checkout_fontsize'] , 0.6, false) . '>0.6em</option>';
+		$html .= '<option value="0.7" ' . selected( $options['checkout_fontsize'] , 0.7, false) . '>0.7em</option>';
+		$html .= '<option value="0.8" ' . selected( $options['checkout_fontsize'] , 0.8, false) . '>0.8em</option>';
+		$html .= '<option value="0.9" ' . selected( $options['checkout_fontsize'] , 0.9, false) . '>0.9em</option>';
 		$html .= '<option value="1" ' . selected( $options['checkout_fontsize'] , 1, false) . '>1em</option>';
 		$html .= '<option value="1.1" ' . selected( $options['checkout_fontsize'] , 1.1, false) . '>1.1em</option>';
 		$html .= '<option value="1.2" ' . selected( $options['checkout_fontsize'] , 1.2, false) . '>1.2em</option>';
@@ -1064,6 +1098,11 @@ class ClimaticCo_Admin_Settings {
 		}
 		$html .= '<select id="thankyou_fontsize" name="wppb_demo_display_options[thankyou_fontsize]" style="width: 360px;max-width: 100%;'.$display_none.'">';
 		$html .= '<option value="">' . __( 'Seleccionar tamaño de fuente', 'wppb-demo-plugin' ) . '</option>';
+		$html .= '<option value="0.5" ' . selected( $options['thankyou_fontsize'] , 0.5, false) . '>0.5em</option>';
+		$html .= '<option value="0.6" ' . selected( $options['thankyou_fontsize'] , 0.6, false) . '>0.6em</option>';
+		$html .= '<option value="0.7" ' . selected( $options['thankyou_fontsize'] , 0.7, false) . '>0.7em</option>';
+		$html .= '<option value="0.8" ' . selected( $options['thankyou_fontsize'] , 0.8, false) . '>0.8em</option>';
+		$html .= '<option value="0.9" ' . selected( $options['thankyou_fontsize'] , 0.9, false) . '>0.9em</option>';
 		$html .= '<option value="1" ' . selected( $options['thankyou_fontsize'] , 1, false) . '>1em</option>';
 		$html .= '<option value="1.1" ' . selected( $options['thankyou_fontsize'] , 1.1, false) . '>1.1em</option>';
 		$html .= '<option value="1.2" ' . selected( $options['thankyou_fontsize'] , 1.2, false) . '>1.2em</option>';

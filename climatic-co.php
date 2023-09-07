@@ -16,7 +16,7 @@
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           1.0.27
+ * Version:           1.0.28
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
@@ -827,7 +827,7 @@ function woo_change_order_received_text( $str, $order ) {
 			//var_dump($session['thank-you']['link']);
 			$full_link = '';
 			if ($link != '') {
-				$full_link = '<a href="'.$link.'" target="_blank" style="display: inline-flex;align-items: flex-start;padding: 0; margin-top: -4; margin-left: 5px">Más información</a>';
+				$full_link = '<a href="'.$link.'" target="_blank" style="display: inline-flex;align-items: flex-start;padding: 0; margin-top: -4; margin-left: 5px; text-decoration: underline;">Más información.</a>';
 			}
 			$new_str = '<div class="alertbox alertbox-'.$options['thankyou_alignment'].'" style="background-color:'.$background_color.';text-align: '.$options['thankyou_alignment'].';font-size:'.$options['thankyou_fontsize'].'em;">
 			'.' <span class="message-content" style="margin-top: 2px;"><span class="tooltip_climaticco" style="margin-right: 5px;"><img src="'.$black_background.'"></span>'.$msg.$full_link.'<span class="closebtn tooltip_climaticco" style="margin-top: 4px;"><i class="fa fa-info-circle" aria-hidden="true"></i> <span style="background-color:'.$background_color.';" class="tooltiptext tooltip-left">'.$tooltip.'</span></span> </span>'.'
