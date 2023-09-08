@@ -20,34 +20,18 @@ La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus env
 = 1.0.0 =
 * Primera versión de producción
 
-= 0.0.7 =
-* Se han arreglado los enlaces 
+= 1.0.26 =
+* Modificación de llamadas curl para solucionar error después de actualizar SSL wildcard 
 
-= 0.0.6 =
-* Se ha suprimido el link de detalles
+= 1.0.27 =
+* Eliminamos warnings que salían en el front, en la página de Thankyou 
 
-= 0.0.5 =
-* Se han modificado las rutas de las imágenes
+= 1.1 =
+* Se incluye la carga automática de valores por defecto al instalar el Plugin
 
-= 0.0.4 =
-* Se ha añadido el nuevo sello que es legible en tamaños pequeños 
-
-= 0.0.3 =
-* Se ha actualizado la lista de detalles del plugin 
-
-= 0.0.2 =
-* Segunda versión para testing 
-
-= 0.0.1 =
-* Primera versión para testing 
 
 == Upgrade Notice ==
 
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
 
 == A brief Markdown Example ==
 

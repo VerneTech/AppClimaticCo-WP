@@ -333,6 +333,15 @@ class ClimaticCo_Admin_Settings {
 	public function general_options_callback() {
 		$options = get_option('wppb_demo_display_options');
 		//var_dump($options);
+
+		// comprobamos que las opciones tengan ids de mensajes
+		if ($options["product_message"]=="") {
+			// como no están establecidos los ids de mensajes, establecemos los mensajes por defecto
+			$default_array = $this->default_display_options();
+			update_option( 'wppb_demo_display_options', $default_array );
+		}
+
+
 		echo '<div class="tooltip_wrap help-link"><div class="tooltip_new"><span class="button_text"><a href="https://www.climaticco.com/ayuda/plugin-config/" target="_blank">Ayuda</a></span></div></div>';
 	} // end general_options_callback
 	
