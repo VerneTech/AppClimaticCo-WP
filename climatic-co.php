@@ -16,7 +16,7 @@
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           1.1.1
+ * Version:           1.1.2
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
@@ -797,34 +797,7 @@ function woo_change_order_received_text( $str, $order ) {
 			$msg = $message['content'];
 			$link = $messageData['thankyou_link'];
 			
-			// $session = $_SESSION['msgs'];
-			// $tooltip = '';
-			// if(isset($_SESSION['msgs']['thank-you'][$options['thankyou_message']])){				
-			// 	$tooltip = $session['thank-you'][$options['thankyou_message']]['tooltip'];
-			// }else{
-			// 	if(!empty($session['thank-you'])){
-			// 		foreach($session['thank-you'] as $ss){								
-			// 			$tooltip = $ss['tooltip'];
-			// 			break;
-			// 		}
-			// 	}
-			// }
-			// $msg = '';
-			// if(isset($_SESSION['msgs']['thank-you'][$options['thankyou_message']])){	
-			// 	$msg = $session['thank-you'][$options['thankyou_message']]['content'];
-			// 	$link = $session['thank-you']['link'];
-			// }else{
-			// 	if(!empty($session['thank-you'])){
-			// 		foreach($session['thank-you'] as $ss){								
-			// 			$msg = $ss['content'];
-			// 			break;
-			// 		}
-			// 	}
-			// }
-			// $link = $session['thank-you']['link'];
-			//var_dump($link);
-			//$allmsg = '<span class="tooltip"><img src="'.$black_background.'"></span> <span class="message-content" style="margin-top: 2px;">'.$msg.' <a href="'.$link.'" target="_blank" style="display: inline-flex;align-items: flex-start;padding: 0; margin-top: -4;">Más información</a></span>';
-			//var_dump($session['thank-you']['link']);
+			
 			$full_link = '';
 			if ($link != '') {
 				$full_link = '<a href="'.$link.'" target="_blank" style="display: inline-flex;align-items: flex-start;padding: 0; margin-top: -4; margin-left: 5px; text-decoration: underline;">Más información.</a>';
@@ -834,10 +807,8 @@ function woo_change_order_received_text( $str, $order ) {
 			</div>';
 	}
 
-    // Asegúrate de que el HTML sea interpretado
-    $result_new_str = wp_kses_post($new_str);
-
-    return $result_new_str;
+    //return $new_str;
+	echo $new_str;
 }
 
 /*add_action('init', 'my_init_new');
