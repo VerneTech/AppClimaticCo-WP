@@ -29,6 +29,8 @@ La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus env
 = 1.1 =
 * Se incluye la carga automática de valores por defecto al instalar el Plugin
 
+= 1.1.1 =
+* Solucionamos error en la presentación del mensaje de Thankyou
 
 == Upgrade Notice ==
 
