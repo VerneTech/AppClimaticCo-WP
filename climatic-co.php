@@ -16,7 +16,7 @@
  * Plugin Name:       ClimaticCo
  * Plugin URI:        https://www.climaticco.com/ayuda/wp-plugin-config/
  * Description:       La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus envíos sean neutros en carbono. Sencillamente.
- * Version:           1.1.2
+ * Version:           1.2
  * Update URI:        https://appv2.climaticco.com/wordpress-plugin/info.json
  * Author:            ClimaticCo
  * Author URI:        https://www.climaticco.com/
@@ -120,83 +120,6 @@ function run_climatic_co_plugin() {
 	
 run_climatic_co_plugin();
 
-/*
-function admin_style() {
-     echo '<style>
-        #adminmenu #toplevel_page_climatic-co-options div.wp-menu-image:before {background-image: url(https://wp-climatic.ghrixlabs.com/wp-content/plugins/climatic-co/admin/image/logo.png); background-size: contain; background-repeat: no-repeat;   background-position-y: 3px; background-position-x: 0px; content: "";}
-      </style>';
-}
-add_action('admin_enqueue_scripts', 'admin_style');
-*/
-
-/*add_action( 'woocommerce_after_single_product', 'wp_kama_woocommerce_after_single_product_summary_action' );
-function wp_kama_woocommerce_after_single_product_summary_action(){
-	$options = get_option( 'wppb_demo_display_options' );
-	$stump_position = 'left';
-	if(isset($options['stump_position'])){
-		if($options['stump_position'] != ''){
-			$stump_position = $options['stump_position'];	
-		}
-	}
-	if(!isset($options['synchronization_off'])){
-		if($options['synchronization_off'] != 1){
-			echo '<div style="clear:both;"></div>
-			<div class="stumpwrap '.$stump_position.'">
-				<div class="tooltip">
-					<img src="https://wp-climatic.ghrixlabs.com/wp-content/uploads/2022/05/button.jpg"> 
-					<span class="tooltiptext tooltip-left">'.$options['product_tooltip'].'</span>
-				</div>
-			</div> <div style="clear:both;"></div>';
-		}
-	}
-}
-
-add_action( 'woocommerce_after_cart', 'wp_kama_woocommerce_after_cart_contents', 10, 0);
-function wp_kama_woocommerce_after_cart_contents(){
-	$options = get_option( 'wppb_demo_display_options' );
-	$stump_position = 'left';
-	if(isset($options['stump_position'])){
-		if($options['stump_position'] != ''){
-			$stump_position = $options['stump_position'];	
-		}
-	}
-	if(!isset($options['synchronization_off'])){
-		if($options['synchronization_off'] != 1){
-			echo '<div style="clear:both;"></div>
-			<div class="stumpwrap '.$stump_position.'">
-				<div class="tooltip">
-					<img src="https://wp-climatic.ghrixlabs.com/wp-content/uploads/2022/05/button.jpg"> 
-					<span class="tooltiptext tooltip-left">'.$options['cart_tooltip'].'</span>
-				</div>
-			</div> <div style="clear:both;"></div>';
-		}
-	}
-}
-
-
-
-
-add_action( 'woocommerce_after_checkout_form', 'wp_kama_woocommerce_review_order_after_submit', 10, 0);
-function wp_kama_woocommerce_review_order_after_submit(){
-	$options = get_option( 'wppb_demo_display_options' );
-	$stump_position = 'left';
-	if(isset($options['stump_position'])){
-		if($options['stump_position'] != ''){
-			$stump_position = $options['stump_position'];	
-		}
-	}
-	if(!isset($options['synchronization_off'])){
-		if($options['synchronization_off'] != 1){
-			echo '<div style="clear:both;"></div>
-			<div class="stumpwrap '.$stump_position.'">
-				<div class="tooltip">
-					<img src="https://wp-climatic.ghrixlabs.com/wp-content/uploads/2022/05/button.jpg"> 
-					<span class="tooltiptext tooltip-left">'.$options['checkout_tooltip'].'</span>
-				</div>
-			</div> <div style="clear:both;"></div>';
-		}
-	}
-}*/
 
 function detect_lang(){
 	
@@ -526,34 +449,33 @@ function wp_kama_woocommerce_review_order_after_submit1(){
 	$authentication = get_option('wppb_demo_authentication_options');
 
 	if (isset($authentication['apikey'])) {
-		$stump_position = 'left';
-	if(isset($options['stump_position'])){
-		if($options['stump_position'] != ''){
-			$stump_position = $options['stump_position'];	
+		$stamp_position = 'left';
+		if(isset($options['stamp_position'])){
+			if($options['stamp_position'] != ''){
+				$stamp_position = $options['stamp_position'];	
+			}
 		}
-	}
-	//if(!isset($options['synchronization_off'])){
-		//if($options['synchronization_off'] != 1){
-		$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
-		if (isset($options['black_background'])) {
-			# code...
-			echo '<div style="clear:both;"></div>
-			<div id="crossitem_added" class="stumpwrap '.$stump_position.'">
-				<div class="tooltip_climaticco">
-					<img src="/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-stamp-dark.png"> 
-				</div>
-			</div> <div style="clear:both;"></div>';
-		}else{
-			echo '<div style="clear:both;"></div>
-			<div id="crossitem_added" class="stumpwrap '.$stump_position.'">
-				<div class="tooltip_climaticco">
-					<img src="/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-stamp.png"> 
-				</div>
-			</div> <div style="clear:both;"></div>';
+		if(isset($options['stamp_show'])){
+			if($options['stamp_show']){
+				$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
+				if (isset($options['black_background'])) {
+					# code...
+					echo '<div style="clear:both;"></div>
+					<div id="crossitem_added" class="stumpwrap '.$stamp_position.'">
+						<div class="tooltip_climaticco">
+							<img src="/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-stamp-dark.png"> 
+						</div>
+					</div> <div style="clear:both;"></div>';
+				}else{
+					echo '<div style="clear:both;"></div>
+					<div id="crossitem_added" class="stumpwrap '.$stamp_position.'">
+						<div class="tooltip_climaticco">
+							<img src="/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-stamp.png"> 
+						</div>
+					</div> <div style="clear:both;"></div>';
+				}
+			}
 		}
-			
-		//}
-	//}
 	}
 	
 }
@@ -574,15 +496,14 @@ function custom_action_after_single_product_title() {
 	$options = get_option( 'wppb_demo_display_options' );
 	$authentication = get_option('wppb_demo_authentication_options');
 
-	if (isset($authentication['apikey'])) {
+	if (isset($options['product_message_show'])) {
+		if (isset($authentication['apikey'])) {
 			
-			if(isset($options['prod_fontsize'])){
-				if($options['prod_fontsize'] != ''){
-					$options['prod_fontsize'] = $options['prod_fontsize'];	
-				}else{
+			if (isset($options['prod_fontsize'])) {
+				if ($options['prod_fontsize'] == '') {
 					$options['prod_fontsize'] = '1';
 				}
-			}else{
+			} else {
 				$options['prod_fontsize'] = '1';
 			}
 			$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
@@ -602,38 +523,21 @@ function custom_action_after_single_product_title() {
 			}
 			$tooltip = $message['tooltip'];
 			$msg = $message['content'];
-
-			// $session = $_SESSION['msgs'];
-			// $tooltip = '';
-			// if(isset($_SESSION['msgs']['product'][$options['product_message']])){				
-			// 	$tooltip = $session['product'][$options['product_message']]['tooltip'];
-			// }else{
-			// 	if(!empty($session['product'])){
-			// 		foreach($session['product'] as $ss){								
-			// 			$tooltip = $ss['tooltip'];
-			// 			break;
-			// 		}
-			// 	}
-			// }
-			// $msg = '';
-			// if(isset($_SESSION['msgs']['product'][$options['product_message']])){	
-			// 	$msg = $session['product'][$options['product_message']]['content'];
-			// }else{
-			// 	if(!empty($session['product'])){
-			// 		foreach($session['product'] as $ss){								
-			// 			$msg = $ss['content'];
-			// 			break;
-			// 		}
-			// 	}
-			// }
-			
-			
-			$allmsg = '<div class="alertbox alertbox-'.$options['prod_alignment'].'" style="background-color:'.$background_color.';font-size:'.$options['prod_fontsize'].'em;"> 
-			'.'<span class="message-content"><span class="tooltip_climaticco"><img src="'.$black_background.'"></span>'.$msg.'<span class="closebtn tooltip_climaticco"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span></span>'.'
-		</div>';
-			
+		
+			$allmsg = '<div class="alertbox alertbox-'.$options['prod_alignment'].'" 
+							style="background-color:'.$background_color.';font-size:'.$options['prod_fontsize'].'em;">
+								<span class="message-content">
+									<span class="tooltip_climaticco"><img src="'.$black_background.'"></span>
+									'.$msg.'
+									<span class="closebtn tooltip_climaticco">
+										<i class="fa fa-info-circle" aria-hidden="true"></i> 
+										<span class="tooltiptext tooltip-left">'.$tooltip.'</span>
+									</span>
+								</span>
+						</div>';
 			
 			echo $allmsg;
+		}
 	}
 
 	
@@ -657,40 +561,43 @@ function woocommerce_output_all_notices1() {
 
 	$authentication = get_option('wppb_demo_authentication_options');
 	
-	if (isset($authentication['apikey'])) {
-		if(isset($options['cart_fontsize'])){
-			if($options['cart_fontsize'] != ''){
-				//$options['cart_fontsize'] = $options['prod_fontsize'];	
+	if(isset($options["cart_message_show"])) {
+		if (isset($authentication['apikey'])) {
+			if(isset($options['cart_fontsize'])){
+				if($options['cart_fontsize'] != ''){
+					//$options['cart_fontsize'] = $options['prod_fontsize'];	
+				}else{
+					$options['cart_fontsize'] = '1';
+				}
 			}else{
 				$options['cart_fontsize'] = '1';
 			}
-		}else{
-			$options['cart_fontsize'] = '1';
-		}
-		$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
-		$background_color = $options['cart_color'];
-		$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-light.png';
-		if(isset($options['black_background'])){
-			if($options['black_background'] == 1){
-				$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-dark.png';	
+			$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
+			$background_color = $options['cart_color'];
+			$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-light.png';
+			if(isset($options['black_background'])){
+				if($options['black_background'] == 1){
+					$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-dark.png';	
+				}
 			}
-		}
-		$lang = detect_lang();
-		$messageData = getMessage($lang,'cart');
-		
-		if(isset($messageData[$options['cart_message']])){
-			$message = $messageData[$options['cart_message']];
-		}else{
-			$message = $messageData[0];
-		}
-		$tooltip = $message['tooltip'];
-		$msg = $message['content'];
+			$lang = detect_lang();
+			$messageData = getMessage($lang,'cart');
+			
+			if(isset($messageData[$options['cart_message']])){
+				$message = $messageData[$options['cart_message']];
+			}else{
+				$message = $messageData[0];
+			}
+			$tooltip = $message['tooltip'];
+			$msg = $message['content'];
+					
+			echo '<div class="alertbox alertbox-'.$options['cart_alignment'].'" style="background-color:'.$background_color.';text-align: '.$options['cart_alignment'].';font-size:'.$options['cart_fontsize'].'em;">
+				'.' <span class="message-content"><span class="tooltip_climaticco"><img src="'.$black_background.'"></span>'.$msg.'<span class="closebtn tooltip_climaticco"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span></span>'.'
 				
-		echo '<div class="alertbox alertbox-'.$options['cart_alignment'].'" style="background-color:'.$background_color.';text-align: '.$options['cart_alignment'].';font-size:'.$options['cart_fontsize'].'em;">
-			'.' <span class="message-content"><span class="tooltip_climaticco"><img src="'.$black_background.'"></span>'.$msg.'<span class="closebtn tooltip_climaticco"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span></span>'.'
-			 
-		</div>';
+			</div>';
+		}
 	}
+
 }
 
 
@@ -709,63 +616,40 @@ function woocommerce_before_checkout_form_before() {
 	$options = get_option( 'wppb_demo_display_options' );
 	$authentication = get_option('wppb_demo_authentication_options');
 
-	if (isset($authentication['apikey'])) {
-		if(isset($options['checkout_fontsize'])){
-			if($options['checkout_fontsize'] != ''){
-				//$options['checkout_fontsize'] = $options['prod_fontsize'];	
+	if (isset($options['checkout_message_show'])) {
+		if (isset($authentication['apikey'])) {
+			if(isset($options['checkout_fontsize'])){
+				if($options['checkout_fontsize'] != ''){
+					//$options['checkout_fontsize'] = $options['prod_fontsize'];	
+				}else{
+					$options['checkout_fontsize'] = '1';
+				}
 			}else{
 				$options['checkout_fontsize'] = '1';
 			}
-		}else{
-			$options['checkout_fontsize'] = '1';
-		}
-		$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
-		$background_color = $options['checkout_color'];
-		$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-light.png';
-		if(isset($options['black_background'])){
-			if($options['black_background'] == 1){
-				$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-dark.png';
+			$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
+			$background_color = $options['checkout_color'];
+			$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-light.png';
+			if(isset($options['black_background'])){
+				if($options['black_background'] == 1){
+					$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-dark.png';
+				}
 			}
+			
+			$lang = detect_lang();
+			$messageData = getMessage($lang,'check-out');
+			if(isset($messageData[$options['checkout_message']])){
+				$message = $messageData[$options['checkout_message']];
+			}else{
+				$message = $messageData[0];
+			}
+			$tooltip = $message['tooltip'];
+			$msg = $message['content'];
+						
+			echo '<div class="alertbox alertbox-'.$options['checkout_alignment'].'" style="clear: both; background-color:'.$background_color.';text-align: '.$options['checkout_alignment'].';font-size:'.$options['checkout_fontsize'].'em;">
+				'.' <span class="message-content"><span class="tooltip_climaticco"><img src="'.$black_background.'"></span>'.$msg.'<span class="closebtn tooltip_climaticco"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span> </span>'.'
+			</div>';
 		}
-		
-		$lang = detect_lang();
-		$messageData = getMessage($lang,'check-out');
-		if(isset($messageData[$options['checkout_message']])){
-			$message = $messageData[$options['checkout_message']];
-		}else{
-			$message = $messageData[0];
-		}
-		$tooltip = $message['tooltip'];
-		$msg = $message['content'];
-		// $session = $_SESSION['msgs'];
-		// $tooltip = '';
-		// if(isset($_SESSION['msgs']['check-out'][$options['checkout_message']])){				
-		// 	$tooltip = $session['check-out'][$options['checkout_message']]['tooltip'];
-		// }else{
-		// 	if(!empty($session['check-out'])){
-		// 		foreach($session['check-out'] as $ss){								
-		// 			$tooltip = $ss['tooltip'];
-		// 			break;
-		// 		}
-		// 	}
-		// }
-		// $msg = '';
-		// if(isset($_SESSION['msgs']['check-out'][$options['checkout_message']])){	
-		// 	$msg = $session['check-out'][$options['checkout_message']]['content'];
-		// }else{
-		// 	if(!empty($session['check-out'])){
-		// 		foreach($session['check-out'] as $ss){								
-		// 			$msg = $ss['content'];
-		// 			break;
-		// 		}
-		// 	}
-		// }
-		
-		//$allmsg = '<span class="tooltip"><img src="'.$black_background.'"></span> <span class="message-content">'.$msg.'</span>';
-		
-		echo '<div class="alertbox alertbox-'.$options['checkout_alignment'].'" style="clear: both; background-color:'.$background_color.';text-align: '.$options['checkout_alignment'].';font-size:'.$options['checkout_fontsize'].'em;">
-			'.' <span class="message-content"><span class="tooltip_climaticco"><img src="'.$black_background.'"></span>'.$msg.'<span class="closebtn tooltip_climaticco"><i class="fa fa-info-circle" aria-hidden="true"></i> <span class="tooltiptext tooltip-left">'.$tooltip.'</span></span> </span>'.'
-		</div>';
 	}
 }
 
@@ -776,35 +660,37 @@ function woo_change_order_received_text( $str, $order ) {
 	$options = get_option( 'wppb_demo_display_options' );
 	$authentication = get_option('wppb_demo_authentication_options');
 
-	if (isset($authentication['apikey'])) {
-		$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
-			$background_color = $options['thankyou_color'];
-			$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-light.png';
-			if(isset($options['black_background'])){
-				if($options['black_background'] == 1){
-					$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-dark.png';
+	if (isset($options['thankyou_message_show'])) {
+		if (isset($authentication['apikey'])) {
+			$plugin_dir = str_replace(WP_PLUGIN_DIR . '/', '', __DIR__);
+				$background_color = $options['thankyou_color'];
+				$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-light.png';
+				if(isset($options['black_background'])){
+					if($options['black_background'] == 1){
+						$black_background = '/wp-content/plugins/' . $plugin_dir . '/public/img/climaticco-dark.png';
+					}
 				}
-			}
-			
-			$lang = detect_lang();
-			$messageData = getMessage($lang,'thank-you');
-			if(isset($messageData[$options['thankyou_message']])){
-				$message = $messageData[$options['thankyou_message']];
-			}else{
-				$message = $messageData[0];
-			}
-			$tooltip = $message['tooltip'];
-			$msg = $message['content'];
-			$link = $messageData['thankyou_link'];
-			
-			
-			$full_link = '';
-			if ($link != '') {
-				$full_link = '<a href="'.$link.'" target="_blank" style="display: inline-flex;align-items: flex-start;padding: 0; margin-top: -4; margin-left: 5px; text-decoration: underline;">Más información.</a>';
-			}
-			$new_str = '<div class="alertbox alertbox-'.$options['thankyou_alignment'].'" style="background-color:'.$background_color.';text-align: '.$options['thankyou_alignment'].';font-size:'.$options['thankyou_fontsize'].'em;">
-			'.' <span class="message-content" style="margin-top: 2px;"><span class="tooltip_climaticco" style="margin-right: 5px;"><img src="'.$black_background.'"></span>'.$msg.$full_link.'<span class="closebtn tooltip_climaticco" style="margin-top: 4px;"><i class="fa fa-info-circle" aria-hidden="true"></i> <span style="background-color:'.$background_color.';" class="tooltiptext tooltip-left">'.$tooltip.'</span></span> </span>'.'
-			</div>';
+				
+				$lang = detect_lang();
+				$messageData = getMessage($lang,'thank-you');
+				if(isset($messageData[$options['thankyou_message']])){
+					$message = $messageData[$options['thankyou_message']];
+				}else{
+					$message = $messageData[0];
+				}
+				$tooltip = $message['tooltip'];
+				$msg = $message['content'];
+				$link = $messageData['thankyou_link'];
+				
+				
+				$full_link = '';
+				if ($link != '') {
+					$full_link = '<a href="'.$link.'" target="_blank" style="display: inline-flex;align-items: flex-start;padding: 0; margin-top: -4; margin-left: 5px; text-decoration: underline;">Más información.</a>';
+				}
+				$new_str = '<div class="alertbox alertbox-'.$options['thankyou_alignment'].'" style="background-color:'.$background_color.';text-align: '.$options['thankyou_alignment'].';font-size:'.$options['thankyou_fontsize'].'em;">
+				'.' <span class="message-content" style="margin-top: 2px;"><span class="tooltip_climaticco" style="margin-right: 5px;"><img src="'.$black_background.'"></span>'.$msg.$full_link.'<span class="closebtn tooltip_climaticco" style="margin-top: 4px;"><i class="fa fa-info-circle" aria-hidden="true"></i> <span style="background-color:'.$background_color.';" class="tooltiptext tooltip-left">'.$tooltip.'</span></span> </span>'.'
+				</div>';
+		}
 	}
 
     //return $new_str;

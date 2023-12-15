@@ -85,23 +85,34 @@ class ClimaticCo_Admin_Settings {
 			'prod_under_h1' => '',
 			'cart_under_h1' => '',
 			'checkout_under_h1' => '',
+			
+			'product_message_show' => '1',
+			'cart_message_show' => '1',
+			'checkout_message_show' => '1',
+			'thankyou_message_show' => '1',
+			'stamp_show' => '1',
+			
 			'product_message' => $id_product_message,
 			'prod_alignment' => 'left',
 			'prod_fontsize' => '1',
 			'product_color' => '',
+			
 			'cart_message' => $id_cart_message,
 			'cart_alignment' => 'left',
 			'cart_fontsize' => '1',
 			'cart_color' => '',
+			
 			'checkout_message' => $id_checkout_message,
 			'checkout_alignment' => 'left',
 			'checkout_fontsize' => '1',
 			'checkout_color' => '',
+			
 			'thankyou_message' => $id_thankyou_message,
 			'thankyou_alignment' => 'left',
 			'thankyou_fontsize' => '1.2',
 			'thankyou_color' => '',
-			'stump_position' => 'center',
+			
+			'stamp_position' => 'center',
 		  );
 
 		return $defaults;
@@ -410,22 +421,20 @@ class ClimaticCo_Admin_Settings {
 
 		add_settings_section(
 			'general_settings_section',			            // ID used to identify this section and with which to register options
-			__( '', 'wppb-demo-plugin' ),		        // Title to be displayed on the administration page
+			__( '', 'wppb-demo-plugin' ),		        	// Title to be displayed on the administration page
 			array( $this, 'general_options_callback'),	    // Callback used to render the description of the section
 			'wppb_demo_display_options'		                // Page on which to add this section of options
 		);
 		
 		//add_settings_field('logo','Message Logo',array( $this, 'logo_display'), 'wppb_demo_display_options','general_settings_section');
 		
-		/*add_settings_field(
-			'Synchronization Off',
-			__( 'Synchronization Off', 'wppb-demo-plugin' ),
-			array( $this, 'checkbox_element_callback'),
+		add_settings_field(
+			'Mostrar Mensaje Producto',
+			__( 'Mostrar Mensaje Producto', 'wppb-demo-plugin' ),
+			array( $this, 'checkbox_product_message_show_callback'),
 			'wppb_demo_display_options',
 			'general_settings_section'
-		);*/
-		
-		
+		);
 		add_settings_field(
 			'Mensaje producto',
 			__( 'Mensaje producto', 'wppb-demo-plugin' ),
@@ -433,8 +442,6 @@ class ClimaticCo_Admin_Settings {
 			'wppb_demo_display_options',
 			'general_settings_section'
 		);
-		
-		
 		
 		/*add_settings_field(
 			'Product tooltip message',
@@ -444,6 +451,13 @@ class ClimaticCo_Admin_Settings {
 			'general_settings_section'
 		);*/
 		
+		add_settings_field(
+			'Mostrar Mensaje Carrito',
+			__( 'Mostrar Mensaje Carrito', 'wppb-demo-plugin' ),
+			array( $this, 'checkbox_cart_message_show_callback'),
+			'wppb_demo_display_options',
+			'general_settings_section'
+		);
 		add_settings_field(
 			'Mensaje carrito',
 			__( 'Mensaje carrito', 'wppb-demo-plugin' ),
@@ -460,7 +474,13 @@ class ClimaticCo_Admin_Settings {
 			'wppb_demo_display_options',
 			'general_settings_section'
 		);*/
-
+		add_settings_field(
+			'Mostrar Mensaje Checkout',
+			__( 'Mostrar Mensaje Checkout', 'wppb-demo-plugin' ),
+			array( $this, 'checkbox_checkout_message_show_callback'),
+			'wppb_demo_display_options',
+			'general_settings_section'
+		);
 		add_settings_field(
 			'Mensaje checkout',
 			__( 'Mensaje checkout', 'wppb-demo-plugin' ),
@@ -478,7 +498,13 @@ class ClimaticCo_Admin_Settings {
 			'general_settings_section'
 		);*/
 		
-		
+		add_settings_field(
+			'Mostrar Mensaje ThankYou',
+			__( 'Mostrar Mensaje ThankYou', 'wppb-demo-plugin' ),
+			array( $this, 'checkbox_thankyou_message_show_callback'),
+			'wppb_demo_display_options',
+			'general_settings_section'
+		);
 		add_settings_field(
 			'Mensaje thank you',
 			__( 'Mensaje thank you', 'wppb-demo-plugin' ),
@@ -496,11 +522,19 @@ class ClimaticCo_Admin_Settings {
 			'general_settings_section'
 		);*/
 		
+		
+		add_settings_field(
+			'Mostrar Sello',
+			__( 'Mostrar Sello', 'wppb-demo-plugin' ),
+			array( $this, 'checkbox_stamp_show_callback'),
+			'wppb_demo_display_options',
+			'general_settings_section'
+		);
 
 		add_settings_field(
 			'Posición del sello',
 			__( 'Posición del sello', 'wppb-demo-plugin' ),
-			array( $this, 'select_element_stump_position_callback'),
+			array( $this, 'select_element_stamp_position_callback'),
 			'wppb_demo_display_options',
 			'general_settings_section'
 		);
@@ -520,7 +554,7 @@ class ClimaticCo_Admin_Settings {
 			array( $this, 'sanitize_amain_options')
 		);
 
-	} // end wppb-demo_initialize_theme_options
+	} 
 	
 	
 	/**
@@ -753,16 +787,53 @@ class ClimaticCo_Admin_Settings {
 		echo $html;
 	}
 
-	public function checkbox_element_callback() {
+	//inicio checkboxes
+	public function checkbox_product_message_show_callback() {
 
 		$options = get_option( 'wppb_demo_display_options' );
 
-		$html = '<input type="checkbox" id="checkbox_example" name="wppb_demo_display_options[synchronization_off]" value="1"' . checked( 1, $options['synchronization_off'], false ) . '/>';
+		$html = '<input type="checkbox" id="product_message_show" name="wppb_demo_display_options[product_message_show]" value="1"' . checked( 1, $options['product_message_show'], false ) . '/>';
 
 		echo $html;
 
 	} 
-	
+	public function checkbox_cart_message_show_callback() {
+
+		$options = get_option( 'wppb_demo_display_options' );
+
+		$html = '<input type="checkbox" id="cart_message_show" name="wppb_demo_display_options[cart_message_show]" value="1"' . checked( 1, $options['cart_message_show'], false ) . '/>';
+
+		echo $html;
+
+	} 
+	public function checkbox_checkout_message_show_callback() {
+
+		$options = get_option( 'wppb_demo_display_options' );
+
+		$html = '<input type="checkbox" id="checkout_message_show" name="wppb_demo_display_options[checkout_message_show]" value="1"' . checked( 1, $options['checkout_message_show'], false ) . '/>';
+
+		echo $html;
+
+	} 
+	public function checkbox_thankyou_message_show_callback() {
+
+		$options = get_option( 'wppb_demo_display_options' );
+
+		$html = '<input type="checkbox" id="thankyou_message_show" name="wppb_demo_display_options[thankyou_message_show]" value="1"' . checked( 1, $options['thankyou_message_show'], false ) . '/>';
+
+		echo $html;
+
+	} 
+	public function checkbox_stamp_show_callback() {
+
+		$options = get_option( 'wppb_demo_display_options' );
+
+		$html = '<input type="checkbox" id="stamp_show" name="wppb_demo_display_options[stamp_show]" value="1"' . checked( 1, $options['stamp_show'], false ) . '/>';
+
+		echo $html;
+
+	} 
+	//fin checkboxes
 
 	public function apikey_callback() {
 
@@ -778,7 +849,7 @@ class ClimaticCo_Admin_Settings {
 
 	} // end googleplus_callback
 	
-	public function select_element_stump_position_callback(){		
+	public function select_element_stamp_position_callback(){		
 		$options = get_option( 'wppb_demo_display_options' );
 		/*
 		if( isset( $options['display_none'] ) ) {
@@ -787,11 +858,11 @@ class ClimaticCo_Admin_Settings {
 			$display_none = '';
 		} // end if*/
 		$html = '<div class="group-configuration">';
-		$html .= '<select id="stump_position" name="wppb_demo_display_options[stump_position]" style="width: 360px;max-width: 100%;">';
+		$html .= '<select id="stamp_position" name="wppb_demo_display_options[stamp_position]" style="width: 360px;max-width: 100%;">';
 		$html .= '<option value="">' . __( 'Seleccionar alineado', 'wppb-demo-plugin' ) . '</option>';
-		$html .= '<option value="left" ' . selected( $options['stump_position'] , 'left', false) . '>Alineado a la izquierda</option>';
-		$html .= '<option value="center" ' . selected( $options['stump_position'] , 'center', false) . '>Alineado al centro</option>';
-		$html .= '<option value="right" ' . selected( $options['stump_position'] , 'right', false) . '>Alineado a la derecha</option>';		
+		$html .= '<option value="left" ' . selected( $options['stamp_position'] , 'left', false) . '>Alineado a la izquierda</option>';
+		$html .= '<option value="center" ' . selected( $options['stamp_position'] , 'center', false) . '>Alineado al centro</option>';
+		$html .= '<option value="right" ' . selected( $options['stamp_position'] , 'right', false) . '>Alineado a la derecha</option>';		
 		$html .= '</select>';
 		$html .= '<div class="tooltip_wrap"><div class="tooltip_new"><span class="button_text_q tooltip tooltip-simple">?<span class="tooltiptext tooltip-left">Elige la configuración del sello que hemos incluido en tu footer para que todos sepan que tu eCommerce realiza envíos neutros en carbono</span></span></div></div>';
 		$html .= '</div>';
@@ -892,7 +963,7 @@ class ClimaticCo_Admin_Settings {
 
 		echo $html;
 
-	} // end select_element_callback
+	}  
 	
 	
 
@@ -978,7 +1049,7 @@ class ClimaticCo_Admin_Settings {
 
 		echo $html;
 
-	} // end select_element_callback
+	}  
 	
 	public function select_checkout_element_callback() {
 
@@ -1064,7 +1135,7 @@ class ClimaticCo_Admin_Settings {
 
 		echo $html;
 
-	} // end select_element_callback
+	}  
 	
 
 	public function select_thankyou_element_callback() {
@@ -1229,7 +1300,7 @@ class ClimaticCo_Admin_Settings {
 		echo $html;
 	}  
 	
-	// end select_element_callback
+	 
 	
 	/*function select_element_callback_prod_tab(){
 		

@@ -32,6 +32,13 @@ La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus env
 = 1.1.1 =
 * Solucionamos error en la presentación del mensaje de Thankyou
 
+= 1.1.2 =
+* Solucionamos error en la presentación del mensaje de Thankyou
+
+= 1.2 =
+* Añadimos 'checkboxes' para mostrar/ocultar mensajes en el Front
+
+
 == Upgrade Notice ==
 
 
