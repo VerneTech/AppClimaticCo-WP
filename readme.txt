@@ -38,6 +38,9 @@ La solución para la sostenibilidad de tu eCommerce: ClimaticCo hace que tus env
 = 1.2 =
 * Añadimos 'checkboxes' para mostrar/ocultar mensajes en el Front
 
+= 1.2.1 =
+* Aligeramos las imágenes del módulo para que los mensajes se carguen más rápido.
+
 
 == Upgrade Notice ==
 
